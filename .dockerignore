@@ -1,0 +1,12 @@
+# Build context for Dockerfile.backend (frontend/ and ai-service/ have their own contexts and .dockerignore)
+target/
+data/
+frontend/
+ai-service/
+.git/
+.github/
+.idea/
+.vscode/
+*.iml
+.env
+.env.*

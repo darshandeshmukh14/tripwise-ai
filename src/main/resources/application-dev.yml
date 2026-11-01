@@ -1,0 +1,20 @@
+# Local development defaults. NEVER activate in shared or production environments.
+# Activated automatically together with the "h2" profile (see spring.profiles.group in application.yml).
+jwt:
+  secret: ${JWT_SECRET:5i9MxOUwxetR+RjNEb1HE+3rsINhN4SVXSuTJXlFyYdUjlOJTAGgafRlbjtfQuAt67qYHeBDdUAgHpmYLUYpgA==}
+
+ai-service:
+  api-key: ${AI_SERVICE_API_KEY:tripwise-local-internal-token}
+
+cors:
+  allowed-origins: ${CORS_ALLOWED_ORIGINS:http://localhost:3000}
+
+springdoc:
+  api-docs:
+    enabled: ${OPENAPI_ENABLED:true}
+  swagger-ui:
+    enabled: ${OPENAPI_ENABLED:true}
+
+logging:
+  level:
+    com.tripwise: DEBUG

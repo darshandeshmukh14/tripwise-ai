@@ -1,0 +1,52 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: tripwise-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: tripwise_db
+      POSTGRES_USER: tripwise_user
+      POSTGRES_PASSWORD: tripwise_password
+      TZ: UTC
+      PGTZ: UTC
+    ports:
+      - "5432:5432"
+    volumes:
+      - tripwise_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U tripwise_user -d tripwise_db"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Internal planner; Spring calls it with X-Internal-Token (AI_SERVICE_API_KEY must equal INTERNAL_API_TOKEN).
+  ai-service:
+    build: ./ai-service
+    container_name: tripwise-ai-service
+    restart: unless-stopped
+    environment:
+      INTERNAL_API_TOKEN: ${AI_SERVICE_API_KEY:-tripwise-local-internal-token}
+      LLM_PROVIDER: ${LLM_PROVIDER:-fake}
+      GEMINI_API_KEY: ${GEMINI_API_KEY:-}
+      OPENROUTER_API_KEY: ${OPENROUTER_API_KEY:-}
+      OPENROUTER_MODEL: ${OPENROUTER_MODEL:-openai/gpt-4o-mini}
+      GEMINI_MODEL: ${GEMINI_MODEL:-gemini-2.5-flash}
+    # Published on loopback only, for the Spring Boot app running on the host (mvn spring-boot:run / IntelliJ).
+    ports:
+      - "127.0.0.1:8000:8000"
+
+  # Next.js BFF + UI; talks only to Spring (running on the host, port 8080).
+  frontend:
+    build: ./frontend
+    container_name: tripwise-frontend
+    restart: unless-stopped
+    environment:
+      BACKEND_URL: ${BACKEND_URL:-http://host.docker.internal:8080}
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    ports:
+      - "3000:3000"
+
+volumes:
+  tripwise_pgdata:
+    name: tripwise_pgdata

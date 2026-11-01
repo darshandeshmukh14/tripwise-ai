@@ -1,0 +1,27 @@
+# Indicative Indian Railways reserved fare model (per person, one way). Approximates the published fare
+# structure: telescopic base fare by distance, reservation charge, superfast surcharge and 5% GST on AC classes.
+# Values are calibrated estimates, not an official fare table; always check IRCTC before booking.
+minDistanceKm: {SL: 200, 3A: 300, 2A: 300, 1A: 300}
+superfastMinKm: 300
+gstAc: 0.05
+classes:
+  SL:
+    ac: false
+    reservation: 20
+    superfast: 30
+    slabs: [{upToKm: 500, perKm: 0.55}, {upToKm: 1000, perKm: 0.45}, {upToKm: 2000, perKm: 0.38}, {upToKm: null, perKm: 0.30}]
+  3A:
+    ac: true
+    reservation: 40
+    superfast: 45
+    slabs: [{upToKm: 500, perKm: 1.45}, {upToKm: 1000, perKm: 1.20}, {upToKm: 2000, perKm: 1.00}, {upToKm: null, perKm: 0.80}]
+  2A:
+    ac: true
+    reservation: 50
+    superfast: 45
+    slabs: [{upToKm: 500, perKm: 2.05}, {upToKm: 1000, perKm: 1.75}, {upToKm: 2000, perKm: 1.45}, {upToKm: null, perKm: 1.15}]
+  1A:
+    ac: true
+    reservation: 60
+    superfast: 75
+    slabs: [{upToKm: 500, perKm: 3.40}, {upToKm: 1000, perKm: 2.90}, {upToKm: 2000, perKm: 2.40}, {upToKm: null, perKm: 1.90}]

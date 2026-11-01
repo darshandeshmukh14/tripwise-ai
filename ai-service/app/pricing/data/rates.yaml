@@ -1,0 +1,101 @@
+# Indicative INR rates for India (not live prices). Review periodically.
+# Other countries scale stay/food/activity/local/in-country transport by priceIndex (countries.yaml); amounts
+# are then converted to the trip currency (app/pricing/fx.py).
+#
+# seasonSensitivity: share of the season multiplier applied (0 = fixed tariff, 1 = fully dynamic pricing)
+# spread: +/- range around the expected amount by confidence
+
+spread:
+  HIGH: 0.10
+  MEDIUM: 0.20
+  LOW: 0.35
+
+seasonSensitivity:
+  FLIGHT: 1.0
+  BUS: 0.4
+  TRAIN: 0.0
+  CAR: 0.0
+  STAY: 1.0
+  FOOD: 0.0
+  ACTIVITY: 0.3
+  LOCAL_TRANSPORT: 0.2
+
+# Rupee value of one traveller-hour, used only to pick the recommended transport option
+valueOfTimePerHour:
+  BUDGET: 50
+  STANDARD: 150
+  PREMIUM: 400
+  LUXURY: 900
+
+transport:
+  TRAIN:
+    routeFactor: 1.25        # rail distance vs straight line
+    speedKmh: 55
+    overheadHours: 0.5
+    maxDistanceKm: 3500
+    confidence: HIGH
+    classByComfort: {BUDGET: SL, STANDARD: 3A, PREMIUM: 2A, LUXURY: 1A}
+    classes:                 # per person, one way
+      SL: {base: 50, perKm: 0.45, comfort: 2}
+      3A: {base: 100, perKm: 1.25, comfort: 3}
+      2A: {base: 150, perKm: 1.85, comfort: 4}
+      1A: {base: 250, perKm: 3.10, comfort: 5}
+  BUS:
+    routeFactor: 1.30
+    speedKmh: 45
+    overheadHours: 0.5
+    maxDistanceKm: 1500
+    confidence: MEDIUM
+    classByComfort: {BUDGET: NON_AC_SEATER, STANDARD: AC_SEATER, PREMIUM: AC_SLEEPER, LUXURY: VOLVO_MULTI_AXLE}
+    classes:
+      NON_AC_SEATER: {base: 0, perKm: 1.10, comfort: 1}
+      AC_SEATER: {base: 0, perKm: 1.60, comfort: 2}
+      AC_SLEEPER: {base: 0, perKm: 2.20, comfort: 3}
+      VOLVO_MULTI_AXLE: {base: 0, perKm: 2.60, comfort: 3}
+  FLIGHT:
+    routeFactor: 1.05
+    speedKmh: 650
+    overheadHours: 2.5       # airport transfers, check-in, security
+    minDistanceKm: 250
+    maxDistanceKm: 16000
+    internationalSurcharge: {ECONOMY: 4000, PREMIUM_ECONOMY: 8000, BUSINESS: 20000}  # per person, one way
+    confidence: MEDIUM
+    classByComfort: {BUDGET: ECONOMY, STANDARD: ECONOMY, PREMIUM: PREMIUM_ECONOMY, LUXURY: BUSINESS}
+    classes:
+      ECONOMY: {base: 2000, perKm: 3.20, comfort: 3}
+      PREMIUM_ECONOMY: {base: 3200, perKm: 5.10, comfort: 4}
+      BUSINESS: {base: 7000, perKm: 11.20, comfort: 5}
+  CAR:
+    routeFactor: 1.30
+    speedKmh: 50
+    overheadHours: 0.5
+    maxDistanceKm: 2500
+    confidence: MEDIUM
+    fuelPricePerLitre: 105
+    tollPerKm: 1.6
+    classByComfort: {BUDGET: HATCHBACK, STANDARD: SEDAN, PREMIUM: SUV, LUXURY: LUXURY_SUV}
+    classes:                 # per vehicle
+      HATCHBACK: {mileageKmpl: 18, seats: 4, comfort: 2}
+      SEDAN: {mileageKmpl: 15, seats: 4, comfort: 3}
+      SUV: {mileageKmpl: 12, seats: 6, comfort: 4}
+      LUXURY_SUV: {mileageKmpl: 9, seats: 6, comfort: 5}
+
+# Per room per night, by city tier and comfort level (2 travellers per room)
+stayNightly:
+  1: {BUDGET: 1800, STANDARD: 4000, PREMIUM: 8000, LUXURY: 18000}
+  2: {BUDGET: 1400, STANDARD: 3000, PREMIUM: 6500, LUXURY: 15000}
+  3: {BUDGET: 1100, STANDARD: 2500, PREMIUM: 5500, LUXURY: 12000}
+travellersPerRoom: 2
+
+tierFactor: {1: 1.15, 2: 1.00, 3: 0.90}
+
+# Per person per day
+foodPerDay: {BUDGET: 600, STANDARD: 1100, PREMIUM: 2000, LUXURY: 4000}
+activityPerDay: {BUDGET: 300, STANDARD: 700, PREMIUM: 1500, LUXURY: 3000}
+paceFactor: {relaxed: 0.7, balanced: 1.0, packed: 1.3}
+
+# Per vehicle (4 travellers) per day: autos, cabs, local sightseeing transfers
+localTransportPerDay: {BUDGET: 500, STANDARD: 1000, PREMIUM: 2000, LUXURY: 3500}
+travellersPerLocalVehicle: 4
+
+miscShare: 0.05

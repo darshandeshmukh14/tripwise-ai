@@ -1,0 +1,17 @@
+# Temporary local profile until PostgreSQL runs via Docker.
+# Activate with: SPRING_PROFILES_ACTIVE=h2  (IntelliJ: Active profiles = h2)
+spring:
+  datasource:
+    url: jdbc:h2:file:./data/tripwise-h2;MODE=PostgreSQL;DATABASE_TO_LOWER=TRUE;DEFAULT_NULL_ORDERING=HIGH;AUTO_SERVER=TRUE
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: validate
+
+  flyway:
+    # H2 mirror of db/migration (no PL/pgSQL triggers, JSON instead of JSONB)
+    locations: classpath:db/h2

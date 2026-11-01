@@ -1,0 +1,16 @@
+# Spring Boot backend image (used by compose.prod.yml). Multi-arch: builds on x86_64 and ARM64 (Oracle Ampere, Graviton).
+FROM maven:3.9-eclipse-temurin-21 AS build
+WORKDIR /src
+COPY pom.xml .
+RUN mvn -q -B dependency:go-offline
+COPY src ./src
+RUN mvn -q -B -DskipTests package
+
+FROM eclipse-temurin:21-jre
+WORKDIR /app
+RUN useradd --system --uid 10001 tripwise
+COPY --from=build /src/target/*.jar app.jar
+USER tripwise
+EXPOSE 8080
+ENV JAVA_TOOL_OPTIONS="-XX:MaxRAMPercentage=60"
+ENTRYPOINT ["java", "-jar", "/app/app.jar"]

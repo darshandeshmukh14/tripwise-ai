@@ -1,0 +1,133 @@
+# Month (1-12) -> season per destination profile. Multipliers apply to season-sensitive costs (see rates.yaml).
+multipliers:
+  PEAK: 1.35
+  SHOULDER: 1.00
+  "OFF": 0.80
+
+profiles:
+  beach:
+    notes: "Dry winter months are peak; the monsoon (roughly Jun-Sep) is off season with some closures."
+    PEAK: [11, 12, 1]
+    SHOULDER: [2, 3, 10]
+    "OFF": [4, 5, 6, 7, 8, 9]
+  hill:
+    notes: "Summer holidays and the Christmas/New Year week are peak; monsoon months bring landslide risk."
+    PEAK: [4, 5, 6, 12]
+    SHOULDER: [1, 2, 3, 10, 11]
+    "OFF": [7, 8, 9]
+  high_altitude:
+    notes: "Roads and most stays operate in summer; winter is harsh with limited access."
+    PEAK: [6, 7, 8]
+    SHOULDER: [5, 9]
+    "OFF": [1, 2, 3, 4, 10, 11, 12]
+  heritage:
+    notes: "Cool winter months are peak; summer heat makes Apr-Jun off season."
+    PEAK: [11, 12, 1, 2]
+    SHOULDER: [3, 10]
+    "OFF": [4, 5, 6, 7, 8, 9]
+  south:
+    notes: "Post-monsoon winter is peak; heavy monsoon (Jun-Aug) is off season."
+    PEAK: [12, 1]
+    SHOULDER: [2, 3, 9, 10, 11]
+    "OFF": [4, 5, 6, 7, 8]
+  pilgrimage:
+    notes: "Festival and winter months draw the largest crowds."
+    PEAK: [10, 11, 12, 1, 2, 3]
+    SHOULDER: [4, 9]
+    "OFF": [5, 6, 7, 8]
+  metro:
+    notes: "Festive and wedding season (Oct-Jan) raises hotel prices; summer is quieter."
+    PEAK: [10, 11, 12, 1]
+    SHOULDER: [2, 3, 7, 8, 9]
+    "OFF": [4, 5, 6]
+  # ---- international (v2) ----
+  himalaya:
+    notes: "Clear autumn (Oct-Nov) and spring (Mar-Apr) are peak trekking seasons; the monsoon is off season."
+    PEAK: [3, 4, 10, 11]
+    SHOULDER: [2, 5, 12]
+    "OFF": [1, 6, 7, 8, 9]
+  tropical_west:
+    notes: "The dry season (roughly Dec-Feb) is peak; the south-west monsoon (May-Oct) is off season."
+    PEAK: [12, 1, 2]
+    SHOULDER: [3, 4, 11]
+    "OFF": [5, 6, 7, 8, 9, 10]
+  tropical_east:
+    notes: "East coasts are dry in mid-year; the north-east monsoon (Oct-Dec) brings rain."
+    PEAK: [6, 7, 8]
+    SHOULDER: [1, 2, 3, 4, 5, 9]
+    "OFF": [10, 11, 12]
+  subtropical_north:
+    notes: "Mild autumn and spring are peak; hot, rainy summers are off season."
+    PEAK: [3, 4, 10, 11]
+    SHOULDER: [1, 2, 5, 12]
+    "OFF": [6, 7, 8, 9]
+  equatorial:
+    notes: "Warm all year; school holidays and year-end raise prices, monsoon months are quieter."
+    PEAK: [6, 7, 12]
+    SHOULDER: [1, 2, 3, 4, 5, 8]
+    "OFF": [9, 10, 11]
+  southern_tropics:
+    notes: "The dry season (Apr-Oct) is best; July-August and the year-end holidays are peak."
+    PEAK: [7, 8, 12]
+    SHOULDER: [4, 5, 6, 9, 10]
+    "OFF": [1, 2, 3, 11]
+  maldives:
+    notes: "The dry north-east monsoon (Dec-Apr) is peak; May-Oct is wetter and cheaper."
+    PEAK: [12, 1, 2, 3, 4]
+    SHOULDER: [11]
+    "OFF": [5, 6, 7, 8, 9, 10]
+  indian_ocean_south:
+    notes: "Cool dry months and the year-end holidays are peak; Jan-Mar is cyclone season."
+    PEAK: [4, 5, 10, 11, 12]
+    SHOULDER: [6, 7, 8, 9]
+    "OFF": [1, 2, 3]
+  gulf:
+    notes: "The cool winter (Nov-Mar) is peak; the extreme summer heat (May-Sep) is off season."
+    PEAK: [11, 12, 1, 2, 3]
+    SHOULDER: [4, 10]
+    "OFF": [5, 6, 7, 8, 9]
+  khareef:
+    notes: "The monsoon (khareef) turns the region green in Jul-Sep, its peak season."
+    PEAK: [7, 8, 9]
+    SHOULDER: [6, 10, 11, 12, 1, 2]
+    "OFF": [3, 4, 5]
+  japan:
+    notes: "Cherry blossom (late Mar-Apr) and autumn colours (Oct-Nov) are peak; rainy June and humid summers are quieter."
+    PEAK: [3, 4, 10, 11]
+    SHOULDER: [5, 7, 8, 12]
+    "OFF": [1, 2, 6, 9]
+  continental:
+    notes: "Warm summers (Jun-Sep) are peak; winters are very cold outside ski areas."
+    PEAK: [6, 7, 8, 9]
+    SHOULDER: [5, 10]
+    "OFF": [1, 2, 3, 4, 11, 12]
+  mediterranean:
+    notes: "Summer (Jun-Aug) is peak and crowded; spring and autumn are pleasant shoulder months."
+    PEAK: [6, 7, 8]
+    SHOULDER: [4, 5, 9, 10]
+    "OFF": [1, 2, 3, 11, 12]
+  temperate_north:
+    notes: "Summer holidays and the Christmas season are peak; late autumn and late winter are cheapest."
+    PEAK: [6, 7, 8, 12]
+    SHOULDER: [4, 5, 9, 10]
+    "OFF": [1, 2, 3, 11]
+  alpine:
+    notes: "Ski season (Dec-Feb) and high summer (Jul-Aug) are peak; spring and late autumn are quiet."
+    PEAK: [1, 2, 7, 8, 12]
+    SHOULDER: [3, 6, 9]
+    "OFF": [4, 5, 10, 11]
+  safari_east:
+    notes: "The long dry season (Jul-Oct, with the Great Migration) and Dec-Jan are peak; the long rains (Mar-May) are off."
+    PEAK: [7, 8, 9, 10, 12, 1]
+    SHOULDER: [2, 6, 11]
+    "OFF": [3, 4, 5]
+  southern_summer:
+    notes: "Southern-hemisphere summer (Dec-Feb) is peak; the cool, wet winter (May-Sep) is off season."
+    PEAK: [12, 1, 2]
+    SHOULDER: [3, 4, 10, 11]
+    "OFF": [5, 6, 7, 8, 9]
+  safari_south:
+    notes: "The dry winter (Jun-Sep) is best for game viewing; the hot, rainy summer is off season."
+    PEAK: [6, 7, 8, 9]
+    SHOULDER: [5, 10]
+    "OFF": [11, 12, 1, 2, 3, 4]

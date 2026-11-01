@@ -1,0 +1,5 @@
+# Public entry point for compose.prod.yml. Caddy obtains and renews the Let's Encrypt certificate for $DOMAIN.
+{$DOMAIN} {
+	encode zstd gzip
+	reverse_proxy frontend:3000
+}

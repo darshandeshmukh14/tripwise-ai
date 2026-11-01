@@ -1,0 +1,334 @@
+# Indicative city catalogue for estimates (India + 29 international countries). Coordinates are approximate city centres.
+# tier: 1 = metro (higher prices), 2 = large city / major destination, 3 = small town / hill station
+# airport / rail: a usable commercial airport / mainline railway station in or very near the city
+# island: reachable only by air from outside its islandGroup; road/boat legs are allowed within the same islandGroup
+# country: ISO 3166-1 alpha-2 code (default IN); iata: airport/metro-area code used for booking links (optional)
+# seasonProfile: key in seasons.yaml
+cities:
+  - {name: Mumbai, aliases: [Bombay], lat: 19.0760, lon: 72.8777, tier: 1, airport: true, rail: true, seasonProfile: metro, iata: BOM}
+  - {name: Delhi, aliases: [New Delhi, NCR], lat: 28.6139, lon: 77.2090, tier: 1, airport: true, rail: true, seasonProfile: heritage, iata: DEL}
+  - {name: Bengaluru, aliases: [Bangalore], lat: 12.9716, lon: 77.5946, tier: 1, airport: true, rail: true, seasonProfile: metro, iata: BLR}
+  - {name: Chennai, aliases: [Madras], lat: 13.0827, lon: 80.2707, tier: 1, airport: true, rail: true, seasonProfile: metro, iata: MAA}
+  - {name: Kolkata, aliases: [Calcutta], lat: 22.5726, lon: 88.3639, tier: 1, airport: true, rail: true, seasonProfile: metro, iata: CCU}
+  - {name: Hyderabad, aliases: [], lat: 17.3850, lon: 78.4867, tier: 1, airport: true, rail: true, seasonProfile: metro, iata: HYD}
+  - {name: Pune, aliases: [], lat: 18.5204, lon: 73.8567, tier: 1, airport: true, rail: true, seasonProfile: metro, iata: PNQ}
+  - {name: Ahmedabad, aliases: [], lat: 23.0225, lon: 72.5714, tier: 2, airport: true, rail: true, seasonProfile: metro, iata: AMD}
+  - {name: Surat, aliases: [], lat: 21.1702, lon: 72.8311, tier: 2, airport: true, rail: true, seasonProfile: metro, iata: STV}
+  - {name: Lucknow, aliases: [], lat: 26.8467, lon: 80.9462, tier: 2, airport: true, rail: true, seasonProfile: heritage, iata: LKO}
+  - {name: Chandigarh, aliases: [], lat: 30.7333, lon: 76.7794, tier: 2, airport: true, rail: true, seasonProfile: metro, iata: IXC}
+  - {name: Indore, aliases: [], lat: 22.7196, lon: 75.8577, tier: 2, airport: true, rail: true, seasonProfile: metro, iata: IDR}
+  - {name: Bhopal, aliases: [], lat: 23.2599, lon: 77.4126, tier: 2, airport: true, rail: true, seasonProfile: metro, iata: BHO}
+  - {name: Nagpur, aliases: [], lat: 21.1458, lon: 79.0882, tier: 2, airport: true, rail: true, seasonProfile: metro, iata: NAG}
+  - {name: Coimbatore, aliases: [], lat: 11.0168, lon: 76.9558, tier: 2, airport: true, rail: true, seasonProfile: metro, iata: CJB}
+  - {name: Guwahati, aliases: [], lat: 26.1445, lon: 91.7362, tier: 2, airport: true, rail: true, seasonProfile: metro, iata: GAU}
+  - {name: Bhubaneswar, aliases: [], lat: 20.2961, lon: 85.8245, tier: 2, airport: true, rail: true, seasonProfile: heritage, iata: BBI}
+  - {name: Dehradun, aliases: [], lat: 30.3165, lon: 78.0322, tier: 2, airport: true, rail: true, seasonProfile: hill, iata: DED}
+  - {name: Jaipur, aliases: [Pink City], lat: 26.9124, lon: 75.7873, tier: 2, airport: true, rail: true, seasonProfile: heritage, iata: JAI}
+  - {name: Udaipur, aliases: [], lat: 24.5854, lon: 73.7125, tier: 2, airport: true, rail: true, seasonProfile: heritage, iata: UDR}
+  - {name: Jodhpur, aliases: [], lat: 26.2389, lon: 73.0243, tier: 3, airport: true, rail: true, seasonProfile: heritage, iata: JDH}
+  - {name: Jaisalmer, aliases: [], lat: 26.9157, lon: 70.9083, tier: 3, airport: true, rail: true, seasonProfile: heritage, iata: JSA}
+  - {name: Ranthambore, aliases: [Sawai Madhopur], lat: 26.0173, lon: 76.5026, tier: 3, airport: false, rail: true, seasonProfile: heritage}
+  - {name: Agra, aliases: [], lat: 27.1767, lon: 78.0081, tier: 2, airport: true, rail: true, seasonProfile: heritage, iata: AGR}
+  - {name: Khajuraho, aliases: [], lat: 24.8318, lon: 79.9199, tier: 3, airport: true, rail: true, seasonProfile: heritage, iata: HJR}
+  - {name: Varanasi, aliases: [Benares, Kashi], lat: 25.3176, lon: 82.9739, tier: 2, airport: true, rail: true, seasonProfile: pilgrimage, iata: VNS}
+  - {name: Amritsar, aliases: [], lat: 31.6340, lon: 74.8723, tier: 2, airport: true, rail: true, seasonProfile: pilgrimage, iata: ATQ}
+  - {name: Rishikesh, aliases: [], lat: 30.0869, lon: 78.2676, tier: 3, airport: false, rail: true, seasonProfile: pilgrimage}
+  - {name: Haridwar, aliases: [], lat: 29.9457, lon: 78.1642, tier: 3, airport: false, rail: true, seasonProfile: pilgrimage}
+  - {name: Madurai, aliases: [], lat: 9.9252, lon: 78.1198, tier: 2, airport: true, rail: true, seasonProfile: pilgrimage, iata: IXM}
+  - {name: Goa, aliases: [Panaji, Panjim, North Goa, South Goa], lat: 15.2993, lon: 74.1240, tier: 2, airport: true, rail: true, seasonProfile: beach, iata: GOI}
+  - {name: Gokarna, aliases: [], lat: 14.5479, lon: 74.3188, tier: 3, airport: false, rail: true, seasonProfile: beach}
+  - {name: Pondicherry, aliases: [Puducherry], lat: 11.9416, lon: 79.8083, tier: 3, airport: false, rail: true, seasonProfile: beach}
+  - {name: Puri, aliases: [], lat: 19.8135, lon: 85.8312, tier: 3, airport: false, rail: true, seasonProfile: beach}
+  - {name: Visakhapatnam, aliases: [Vizag], lat: 17.6868, lon: 83.2185, tier: 2, airport: true, rail: true, seasonProfile: beach, iata: VTZ}
+  - {name: Thiruvananthapuram, aliases: [Trivandrum, Kovalam], lat: 8.5241, lon: 76.9366, tier: 2, airport: true, rail: true, seasonProfile: beach, iata: TRV}
+  - {name: Varkala, aliases: [], lat: 8.7379, lon: 76.7163, tier: 3, airport: false, rail: true, seasonProfile: beach}
+  - {name: Port Blair, aliases: [Andaman, Andamans, Havelock, Andaman and Nicobar], lat: 11.6234, lon: 92.7265, tier: 3, airport: true, rail: false, island: true, seasonProfile: beach, iata: IXZ, islandGroup: andaman}
+  - {name: Kochi, aliases: [Cochin, Kerala], lat: 9.9312, lon: 76.2673, tier: 2, airport: true, rail: true, seasonProfile: south, iata: COK}
+  - {name: Alleppey, aliases: [Alappuzha], lat: 9.4981, lon: 76.3388, tier: 3, airport: false, rail: true, seasonProfile: south}
+  - {name: Munnar, aliases: [], lat: 10.0889, lon: 77.0595, tier: 3, airport: false, rail: false, seasonProfile: hill}
+  - {name: Mysuru, aliases: [Mysore], lat: 12.2958, lon: 76.6394, tier: 3, airport: false, rail: true, seasonProfile: south}
+  - {name: Hampi, aliases: [Hospet], lat: 15.3350, lon: 76.4600, tier: 3, airport: false, rail: true, seasonProfile: south}
+  - {name: Coorg, aliases: [Madikeri, Kodagu], lat: 12.3375, lon: 75.8069, tier: 3, airport: false, rail: false, seasonProfile: hill}
+  - {name: Ooty, aliases: [Udhagamandalam, Ootacamund], lat: 11.4102, lon: 76.6950, tier: 3, airport: false, rail: false, seasonProfile: hill}
+  - {name: Manali, aliases: [], lat: 32.2432, lon: 77.1892, tier: 3, airport: false, rail: false, seasonProfile: hill}
+  - {name: Shimla, aliases: [], lat: 31.1048, lon: 77.1734, tier: 3, airport: false, rail: false, seasonProfile: hill}
+  - {name: Dharamshala, aliases: [McLeod Ganj, Dharamsala], lat: 32.2190, lon: 76.3234, tier: 3, airport: true, rail: false, seasonProfile: hill, iata: DHM}
+  - {name: Mussoorie, aliases: [], lat: 30.4598, lon: 78.0644, tier: 3, airport: false, rail: false, seasonProfile: hill}
+  - {name: Nainital, aliases: [], lat: 29.3803, lon: 79.4636, tier: 3, airport: false, rail: false, seasonProfile: hill}
+  - {name: Darjeeling, aliases: [], lat: 27.0410, lon: 88.2663, tier: 3, airport: false, rail: false, seasonProfile: hill}
+  - {name: Gangtok, aliases: [Sikkim], lat: 27.3389, lon: 88.6065, tier: 3, airport: false, rail: false, seasonProfile: hill}
+  - {name: Shillong, aliases: [], lat: 25.5788, lon: 91.8933, tier: 3, airport: false, rail: false, seasonProfile: hill}
+  - {name: Srinagar, aliases: [Kashmir], lat: 34.0837, lon: 74.7973, tier: 2, airport: true, rail: true, seasonProfile: hill, iata: SXR}
+  - {name: Leh, aliases: [Ladakh], lat: 34.1526, lon: 77.5771, tier: 3, airport: true, rail: false, seasonProfile: high_altitude, iata: IXL}
+
+  # ---- India (additional) ----
+  - {name: Kozhikode, aliases: [Calicut], lat: 11.2588, lon: 75.7804, tier: 2, airport: true, rail: true, seasonProfile: south, iata: CCJ}
+  - {name: Mangaluru, aliases: [Mangalore], lat: 12.9141, lon: 74.856, tier: 2, airport: true, rail: true, seasonProfile: south, iata: IXE}
+  - {name: Vijayawada, aliases: [], lat: 16.5062, lon: 80.648, tier: 2, airport: true, rail: true, seasonProfile: metro, iata: VGA}
+  - {name: Tirupati, aliases: [Tirumala], lat: 13.6288, lon: 79.4192, tier: 2, airport: true, rail: true, seasonProfile: pilgrimage, iata: TIR}
+  - {name: Rameswaram, aliases: [], lat: 9.2876, lon: 79.3129, tier: 3, airport: false, rail: true, seasonProfile: pilgrimage}
+  - {name: Kanyakumari, aliases: [Cape Comorin], lat: 8.0883, lon: 77.5385, tier: 3, airport: false, rail: true, seasonProfile: beach}
+  - {name: Thanjavur, aliases: [Tanjore], lat: 10.787, lon: 79.1378, tier: 3, airport: false, rail: true, seasonProfile: heritage}
+  - {name: Mahabalipuram, aliases: [Mamallapuram], lat: 12.6208, lon: 80.1945, tier: 3, airport: false, rail: false, seasonProfile: beach}
+  - {name: Kodaikanal, aliases: [], lat: 10.2381, lon: 77.4892, tier: 3, airport: false, rail: false, seasonProfile: hill}
+  - {name: Yercaud, aliases: [], lat: 11.7753, lon: 78.2093, tier: 3, airport: false, rail: false, seasonProfile: hill}
+  - {name: Wayanad, aliases: [Kalpetta], lat: 11.6854, lon: 76.132, tier: 3, airport: false, rail: false, seasonProfile: hill}
+  - {name: Thekkady, aliases: [Kumily, Periyar], lat: 9.6031, lon: 77.1615, tier: 3, airport: false, rail: false, seasonProfile: hill}
+  - {name: Kumarakom, aliases: [], lat: 9.6175, lon: 76.43, tier: 3, airport: false, rail: false, seasonProfile: south}
+  - {name: Chikmagalur, aliases: [Chikkamagaluru], lat: 13.3161, lon: 75.772, tier: 3, airport: false, rail: false, seasonProfile: hill}
+  - {name: Udupi, aliases: [Manipal], lat: 13.3409, lon: 74.7421, tier: 3, airport: false, rail: true, seasonProfile: pilgrimage}
+  - {name: Murudeshwar, aliases: [], lat: 14.094, lon: 74.4848, tier: 3, airport: false, rail: true, seasonProfile: beach}
+  - {name: Badami, aliases: [], lat: 15.9149, lon: 75.6768, tier: 3, airport: false, rail: true, seasonProfile: heritage}
+  - {name: Aurangabad, aliases: [Chhatrapati Sambhajinagar, Ellora, Ajanta], lat: 19.8762, lon: 75.3433, tier: 2, airport: true, rail: true, seasonProfile: heritage, iata: IXU}
+  - {name: Nashik, aliases: [], lat: 19.9975, lon: 73.7898, tier: 2, airport: false, rail: true, seasonProfile: pilgrimage}
+  - {name: Shirdi, aliases: [], lat: 19.7645, lon: 74.4762, tier: 3, airport: true, rail: true, seasonProfile: pilgrimage, iata: SAG}
+  - {name: Lonavala, aliases: [Khandala], lat: 18.7546, lon: 73.4062, tier: 3, airport: false, rail: true, seasonProfile: hill}
+  - {name: Mahabaleshwar, aliases: [Panchgani], lat: 17.9237, lon: 73.6586, tier: 3, airport: false, rail: false, seasonProfile: hill}
+  - {name: Alibaug, aliases: [Alibag], lat: 18.6414, lon: 72.8722, tier: 3, airport: false, rail: false, seasonProfile: beach}
+  - {name: Ratnagiri, aliases: [], lat: 16.9902, lon: 73.312, tier: 3, airport: false, rail: true, seasonProfile: beach}
+  - {name: Tarkarli, aliases: [Malvan], lat: 16.03, lon: 73.47, tier: 3, airport: false, rail: false, seasonProfile: beach}
+  - {name: Kolhapur, aliases: [], lat: 16.705, lon: 74.2433, tier: 2, airport: true, rail: true, seasonProfile: pilgrimage, iata: KLH}
+  - {name: Tadoba, aliases: [Chandrapur, Tadoba Andhari], lat: 20.25, lon: 79.35, tier: 3, airport: false, rail: false, seasonProfile: heritage}
+  - {name: Vadodara, aliases: [Baroda], lat: 22.3072, lon: 73.1812, tier: 2, airport: true, rail: true, seasonProfile: metro, iata: BDQ}
+  - {name: Rajkot, aliases: [], lat: 22.3039, lon: 70.8022, tier: 2, airport: true, rail: true, seasonProfile: metro, iata: HSR}
+  - {name: Dwarka, aliases: [], lat: 22.2394, lon: 68.9678, tier: 3, airport: false, rail: true, seasonProfile: pilgrimage}
+  - {name: Somnath, aliases: [Veraval], lat: 20.888, lon: 70.4012, tier: 3, airport: false, rail: true, seasonProfile: pilgrimage}
+  - {name: Bhuj, aliases: [Kutch, Rann of Kutch], lat: 23.242, lon: 69.6669, tier: 3, airport: true, rail: true, seasonProfile: heritage, iata: BHJ}
+  - {name: Diu, aliases: [], lat: 20.7144, lon: 70.9874, tier: 3, airport: true, rail: false, seasonProfile: beach, iata: DIU}
+  - {name: Daman, aliases: [], lat: 20.3974, lon: 72.8328, tier: 3, airport: false, rail: false, seasonProfile: beach}
+  - {name: Mount Abu, aliases: [], lat: 24.5926, lon: 72.7156, tier: 3, airport: false, rail: false, seasonProfile: hill}
+  - {name: Pushkar, aliases: [Ajmer], lat: 26.4899, lon: 74.5511, tier: 3, airport: false, rail: true, seasonProfile: pilgrimage}
+  - {name: Bikaner, aliases: [], lat: 28.0229, lon: 73.3119, tier: 3, airport: false, rail: true, seasonProfile: heritage}
+  - {name: Chittorgarh, aliases: [], lat: 24.8887, lon: 74.6269, tier: 3, airport: false, rail: true, seasonProfile: heritage}
+  - {name: Gwalior, aliases: [], lat: 26.2183, lon: 78.1828, tier: 2, airport: true, rail: true, seasonProfile: heritage, iata: GWL}
+  - {name: Orchha, aliases: [], lat: 25.3518, lon: 78.64, tier: 3, airport: false, rail: false, seasonProfile: heritage}
+  - {name: Ujjain, aliases: [], lat: 23.1765, lon: 75.7885, tier: 3, airport: false, rail: true, seasonProfile: pilgrimage}
+  - {name: Pachmarhi, aliases: [], lat: 22.4675, lon: 78.4345, tier: 3, airport: false, rail: false, seasonProfile: hill}
+  - {name: Kanha, aliases: [Kanha National Park], lat: 22.3345, lon: 80.6115, tier: 3, airport: false, rail: false, seasonProfile: heritage}
+  - {name: Jabalpur, aliases: [], lat: 23.1815, lon: 79.9864, tier: 2, airport: true, rail: true, seasonProfile: heritage, iata: JLR}
+  - {name: Prayagraj, aliases: [Allahabad], lat: 25.4358, lon: 81.8463, tier: 2, airport: true, rail: true, seasonProfile: pilgrimage, iata: IXD}
+  - {name: Ayodhya, aliases: [], lat: 26.7922, lon: 82.1998, tier: 3, airport: true, rail: true, seasonProfile: pilgrimage, iata: AYJ}
+  - {name: Mathura, aliases: [Vrindavan], lat: 27.4924, lon: 77.6737, tier: 3, airport: false, rail: true, seasonProfile: pilgrimage}
+  - {name: Bodh Gaya, aliases: [Gaya], lat: 24.6961, lon: 84.9869, tier: 3, airport: true, rail: true, seasonProfile: pilgrimage, iata: GAY}
+  - {name: Patna, aliases: [], lat: 25.5941, lon: 85.1376, tier: 2, airport: true, rail: true, seasonProfile: metro, iata: PAT}
+  - {name: Ranchi, aliases: [], lat: 23.3441, lon: 85.3096, tier: 2, airport: true, rail: true, seasonProfile: metro, iata: IXR}
+  - {name: Raipur, aliases: [], lat: 21.2514, lon: 81.6296, tier: 2, airport: true, rail: true, seasonProfile: metro, iata: RPR}
+  - {name: Kanpur, aliases: [], lat: 26.4499, lon: 80.3319, tier: 2, airport: true, rail: true, seasonProfile: metro, iata: KNU}
+  - {name: Warangal, aliases: [], lat: 17.9689, lon: 79.5941, tier: 3, airport: false, rail: true, seasonProfile: heritage}
+  - {name: Konark, aliases: [], lat: 19.8876, lon: 86.0945, tier: 3, airport: false, rail: false, seasonProfile: beach}
+  - {name: Digha, aliases: [], lat: 21.6266, lon: 87.5074, tier: 3, airport: false, rail: true, seasonProfile: beach}
+  - {name: Sundarbans, aliases: [], lat: 21.9497, lon: 89.1833, tier: 3, airport: false, rail: false, seasonProfile: heritage}
+  - {name: Siliguri, aliases: [Bagdogra, New Jalpaiguri], lat: 26.7271, lon: 88.3953, tier: 2, airport: true, rail: true, seasonProfile: hill, iata: IXB}
+  - {name: Kalimpong, aliases: [], lat: 27.066, lon: 88.474, tier: 3, airport: false, rail: false, seasonProfile: hill}
+  - {name: Pelling, aliases: [], lat: 27.3, lon: 88.24, tier: 3, airport: false, rail: false, seasonProfile: hill}
+  - {name: Kaziranga, aliases: [], lat: 26.5775, lon: 93.1711, tier: 3, airport: false, rail: false, seasonProfile: heritage}
+  - {name: Majuli, aliases: [], lat: 26.95, lon: 94.1667, tier: 3, airport: false, rail: false, seasonProfile: heritage}
+  - {name: Tawang, aliases: [], lat: 27.586, lon: 91.859, tier: 3, airport: false, rail: false, seasonProfile: high_altitude}
+  - {name: Ziro, aliases: [], lat: 27.545, lon: 93.83, tier: 3, airport: false, rail: false, seasonProfile: hill}
+  - {name: Imphal, aliases: [], lat: 24.817, lon: 93.9368, tier: 2, airport: true, rail: false, seasonProfile: metro, iata: IMF}
+  - {name: Agartala, aliases: [], lat: 23.8315, lon: 91.2868, tier: 2, airport: true, rail: true, seasonProfile: metro, iata: IXA}
+  - {name: Aizawl, aliases: [], lat: 23.7271, lon: 92.7176, tier: 3, airport: true, rail: false, seasonProfile: hill, iata: AJL}
+  - {name: Kohima, aliases: [], lat: 25.6751, lon: 94.1086, tier: 3, airport: false, rail: false, seasonProfile: hill}
+  - {name: Cherrapunji, aliases: [Sohra], lat: 25.27, lon: 91.732, tier: 3, airport: false, rail: false, seasonProfile: hill}
+  - {name: Dalhousie, aliases: [], lat: 32.5387, lon: 75.971, tier: 3, airport: false, rail: false, seasonProfile: hill}
+  - {name: Kasol, aliases: [Kullu], lat: 32.01, lon: 77.315, tier: 3, airport: false, rail: false, seasonProfile: hill}
+  - {name: Bir, aliases: [Bir Billing], lat: 32.044, lon: 76.718, tier: 3, airport: false, rail: false, seasonProfile: hill}
+  - {name: Kasauli, aliases: [], lat: 30.8984, lon: 76.9655, tier: 3, airport: false, rail: false, seasonProfile: hill}
+  - {name: Spiti, aliases: [Kaza, Spiti Valley], lat: 32.227, lon: 78.071, tier: 3, airport: false, rail: false, seasonProfile: high_altitude}
+  - {name: Auli, aliases: [Joshimath], lat: 30.528, lon: 79.566, tier: 3, airport: false, rail: false, seasonProfile: hill}
+  - {name: Kedarnath, aliases: [], lat: 30.7346, lon: 79.0669, tier: 3, airport: false, rail: false, seasonProfile: pilgrimage}
+  - {name: Jim Corbett, aliases: [Corbett, Ramnagar], lat: 29.3949, lon: 79.123, tier: 3, airport: false, rail: true, seasonProfile: hill}
+  - {name: Lansdowne, aliases: [], lat: 29.8377, lon: 78.6871, tier: 3, airport: false, rail: false, seasonProfile: hill}
+  - {name: Jammu, aliases: [], lat: 32.7266, lon: 74.857, tier: 2, airport: true, rail: true, seasonProfile: pilgrimage, iata: IXJ}
+  - {name: Katra, aliases: [Vaishno Devi], lat: 32.9916, lon: 74.9318, tier: 3, airport: false, rail: true, seasonProfile: pilgrimage}
+  - {name: Gulmarg, aliases: [], lat: 34.0484, lon: 74.3805, tier: 3, airport: false, rail: false, seasonProfile: hill}
+  - {name: Pahalgam, aliases: [], lat: 34.0161, lon: 75.315, tier: 3, airport: false, rail: false, seasonProfile: hill}
+  - {name: Lakshadweep, aliases: [Agatti, Bangaram], lat: 10.858, lon: 72.19, tier: 3, airport: true, rail: false, seasonProfile: beach, iata: AGX, island: true, islandGroup: lakshadweep}
+  # ---- NP ----
+  - {name: Kathmandu, aliases: [], lat: 27.7172, lon: 85.324, tier: 1, airport: true, rail: false, seasonProfile: himalaya, country: NP, iata: KTM}
+  - {name: Pokhara, aliases: [], lat: 28.2096, lon: 83.9856, tier: 2, airport: true, rail: false, seasonProfile: himalaya, country: NP, iata: PKR}
+  - {name: Chitwan, aliases: [Sauraha, Chitwan National Park], lat: 27.5291, lon: 84.3542, tier: 3, airport: false, rail: false, seasonProfile: himalaya, country: NP}
+  - {name: Lumbini, aliases: [], lat: 27.4833, lon: 83.2767, tier: 3, airport: false, rail: false, seasonProfile: himalaya, country: NP}
+  - {name: Nagarkot, aliases: [], lat: 27.7154, lon: 85.52, tier: 3, airport: false, rail: false, seasonProfile: himalaya, country: NP}
+  # ---- BT ----
+  - {name: Paro, aliases: [], lat: 27.4305, lon: 89.4133, tier: 2, airport: true, rail: false, seasonProfile: himalaya, country: BT, iata: PBH}
+  - {name: Thimphu, aliases: [], lat: 27.4728, lon: 89.639, tier: 2, airport: false, rail: false, seasonProfile: himalaya, country: BT}
+  - {name: Punakha, aliases: [], lat: 27.5916, lon: 89.8775, tier: 3, airport: false, rail: false, seasonProfile: himalaya, country: BT}
+  - {name: Phuentsholing, aliases: [], lat: 26.8516, lon: 89.3884, tier: 3, airport: false, rail: false, seasonProfile: himalaya, country: BT}
+  # ---- LK ----
+  - {name: Colombo, aliases: [], lat: 6.9271, lon: 79.8612, tier: 1, airport: true, rail: true, seasonProfile: tropical_west, country: LK, iata: CMB}
+  - {name: Kandy, aliases: [], lat: 7.2906, lon: 80.6337, tier: 2, airport: false, rail: true, seasonProfile: tropical_west, country: LK}
+  - {name: Galle, aliases: [], lat: 6.0535, lon: 80.221, tier: 2, airport: false, rail: true, seasonProfile: tropical_west, country: LK}
+  - {name: Ella, aliases: [], lat: 6.8667, lon: 81.0466, tier: 3, airport: false, rail: true, seasonProfile: tropical_west, country: LK}
+  - {name: Sigiriya, aliases: [Dambulla], lat: 7.957, lon: 80.7603, tier: 3, airport: false, rail: false, seasonProfile: tropical_east, country: LK}
+  - {name: Nuwara Eliya, aliases: [], lat: 6.9497, lon: 80.7891, tier: 3, airport: false, rail: true, seasonProfile: tropical_west, country: LK}
+  - {name: Bentota, aliases: [], lat: 6.421, lon: 80.0, tier: 3, airport: false, rail: true, seasonProfile: tropical_west, country: LK}
+  - {name: Mirissa, aliases: [], lat: 5.9483, lon: 80.4716, tier: 3, airport: false, rail: false, seasonProfile: tropical_west, country: LK}
+  - {name: Trincomalee, aliases: [], lat: 8.5874, lon: 81.2152, tier: 3, airport: false, rail: true, seasonProfile: tropical_east, country: LK}
+  # ---- MV ----
+  - {name: Male, aliases: [Maldives, Hulhumale], lat: 4.1755, lon: 73.5093, tier: 1, airport: true, rail: false, seasonProfile: maldives, country: MV, iata: MLE, island: true, islandGroup: maldives}
+  - {name: Maafushi, aliases: [], lat: 3.943, lon: 73.49, tier: 3, airport: false, rail: false, seasonProfile: maldives, country: MV, island: true, islandGroup: maldives}
+  # ---- TH ----
+  - {name: Bangkok, aliases: [], lat: 13.7563, lon: 100.5018, tier: 1, airport: true, rail: true, seasonProfile: tropical_west, country: TH, iata: BKK}
+  - {name: Pattaya, aliases: [], lat: 12.9236, lon: 100.8825, tier: 2, airport: false, rail: true, seasonProfile: tropical_west, country: TH}
+  - {name: Chiang Mai, aliases: [], lat: 18.7883, lon: 98.9853, tier: 2, airport: true, rail: true, seasonProfile: subtropical_north, country: TH, iata: CNX}
+  - {name: Chiang Rai, aliases: [], lat: 19.9105, lon: 99.8406, tier: 3, airport: true, rail: false, seasonProfile: subtropical_north, country: TH, iata: CEI}
+  - {name: Phuket, aliases: [], lat: 7.8804, lon: 98.3923, tier: 2, airport: true, rail: false, seasonProfile: tropical_west, country: TH, iata: HKT, island: true, islandGroup: phuket}
+  - {name: Krabi, aliases: [Ao Nang], lat: 8.0863, lon: 98.9063, tier: 2, airport: true, rail: false, seasonProfile: tropical_west, country: TH, iata: KBV}
+  - {name: Koh Samui, aliases: [Ko Samui], lat: 9.512, lon: 100.0136, tier: 2, airport: true, rail: false, seasonProfile: tropical_east, country: TH, iata: USM, island: true, islandGroup: samui}
+  - {name: Ayutthaya, aliases: [], lat: 14.3532, lon: 100.5689, tier: 3, airport: false, rail: true, seasonProfile: tropical_west, country: TH}
+  - {name: Hua Hin, aliases: [], lat: 12.5684, lon: 99.9577, tier: 3, airport: false, rail: true, seasonProfile: tropical_west, country: TH}
+  # ---- VN ----
+  - {name: Hanoi, aliases: [], lat: 21.0278, lon: 105.8342, tier: 1, airport: true, rail: true, seasonProfile: subtropical_north, country: VN, iata: HAN}
+  - {name: Ha Long, aliases: [Halong Bay, Ha Long Bay], lat: 20.9101, lon: 107.1839, tier: 3, airport: false, rail: false, seasonProfile: subtropical_north, country: VN}
+  - {name: Sapa, aliases: [Sa Pa], lat: 22.3364, lon: 103.8438, tier: 3, airport: false, rail: false, seasonProfile: subtropical_north, country: VN}
+  - {name: Hue, aliases: [], lat: 16.4637, lon: 107.5909, tier: 2, airport: true, rail: true, seasonProfile: tropical_east, country: VN, iata: HUI}
+  - {name: Da Nang, aliases: [], lat: 16.0544, lon: 108.2022, tier: 2, airport: true, rail: true, seasonProfile: tropical_east, country: VN, iata: DAD}
+  - {name: Hoi An, aliases: [], lat: 15.8801, lon: 108.338, tier: 3, airport: false, rail: false, seasonProfile: tropical_east, country: VN}
+  - {name: Nha Trang, aliases: [], lat: 12.2388, lon: 109.1967, tier: 2, airport: true, rail: true, seasonProfile: tropical_east, country: VN, iata: CXR}
+  - {name: Ho Chi Minh City, aliases: [Saigon, HCMC], lat: 10.8231, lon: 106.6297, tier: 1, airport: true, rail: true, seasonProfile: tropical_west, country: VN, iata: SGN}
+  - {name: Phu Quoc, aliases: [], lat: 10.2899, lon: 103.984, tier: 3, airport: true, rail: false, seasonProfile: tropical_west, country: VN, iata: PQC, island: true, islandGroup: phuquoc}
+  # ---- SG ----
+  - {name: Singapore, aliases: [], lat: 1.3521, lon: 103.8198, tier: 1, airport: true, rail: true, seasonProfile: equatorial, country: SG, iata: SIN}
+  # ---- MY ----
+  - {name: Kuala Lumpur, aliases: [KL], lat: 3.139, lon: 101.6869, tier: 1, airport: true, rail: true, seasonProfile: equatorial, country: MY, iata: KUL}
+  - {name: Penang, aliases: [George Town], lat: 5.4141, lon: 100.3288, tier: 2, airport: true, rail: true, seasonProfile: equatorial, country: MY, iata: PEN}
+  - {name: Langkawi, aliases: [], lat: 6.35, lon: 99.8, tier: 3, airport: true, rail: false, seasonProfile: equatorial, country: MY, iata: LGK, island: true, islandGroup: langkawi}
+  - {name: Malacca, aliases: [Melaka], lat: 2.1896, lon: 102.2501, tier: 3, airport: false, rail: false, seasonProfile: equatorial, country: MY}
+  - {name: Cameron Highlands, aliases: [], lat: 4.4721, lon: 101.3801, tier: 3, airport: false, rail: false, seasonProfile: equatorial, country: MY}
+  - {name: Kota Kinabalu, aliases: [], lat: 5.9804, lon: 116.0735, tier: 2, airport: true, rail: false, seasonProfile: equatorial, country: MY, iata: BKI}
+  # ---- ID ----
+  - {name: Bali, aliases: [Denpasar, Kuta, Seminyak], lat: -8.6705, lon: 115.2126, tier: 2, airport: true, rail: false, seasonProfile: southern_tropics, country: ID, iata: DPS, island: true, islandGroup: bali}
+  - {name: Ubud, aliases: [], lat: -8.5069, lon: 115.2625, tier: 3, airport: false, rail: false, seasonProfile: southern_tropics, country: ID, island: true, islandGroup: bali}
+  - {name: Lombok, aliases: [Gili Islands], lat: -8.65, lon: 116.3249, tier: 3, airport: true, rail: false, seasonProfile: southern_tropics, country: ID, iata: LOP, island: true, islandGroup: lombok}
+  - {name: Jakarta, aliases: [], lat: -6.2088, lon: 106.8456, tier: 1, airport: true, rail: true, seasonProfile: southern_tropics, country: ID, iata: CGK}
+  - {name: Yogyakarta, aliases: [Jogja], lat: -7.7956, lon: 110.3695, tier: 2, airport: true, rail: true, seasonProfile: southern_tropics, country: ID, iata: YIA}
+  # ---- JP ----
+  - {name: Tokyo, aliases: [], lat: 35.6762, lon: 139.6503, tier: 1, airport: true, rail: true, seasonProfile: japan, country: JP, iata: TYO}
+  - {name: Kyoto, aliases: [], lat: 35.0116, lon: 135.7681, tier: 2, airport: false, rail: true, seasonProfile: japan, country: JP}
+  - {name: Osaka, aliases: [], lat: 34.6937, lon: 135.5023, tier: 1, airport: true, rail: true, seasonProfile: japan, country: JP, iata: OSA}
+  - {name: Nara, aliases: [], lat: 34.6851, lon: 135.8048, tier: 3, airport: false, rail: true, seasonProfile: japan, country: JP}
+  - {name: Hiroshima, aliases: [], lat: 34.3853, lon: 132.4553, tier: 2, airport: true, rail: true, seasonProfile: japan, country: JP, iata: HIJ}
+  - {name: Hakone, aliases: [], lat: 35.2324, lon: 139.1069, tier: 3, airport: false, rail: true, seasonProfile: japan, country: JP}
+  - {name: Sapporo, aliases: [], lat: 43.0618, lon: 141.3545, tier: 2, airport: true, rail: true, seasonProfile: japan, country: JP, iata: SPK}
+  # ---- KR ----
+  - {name: Seoul, aliases: [], lat: 37.5665, lon: 126.978, tier: 1, airport: true, rail: true, seasonProfile: japan, country: KR, iata: SEL}
+  - {name: Busan, aliases: [], lat: 35.1796, lon: 129.0756, tier: 2, airport: true, rail: true, seasonProfile: japan, country: KR, iata: PUS}
+  - {name: Gyeongju, aliases: [], lat: 35.8562, lon: 129.2247, tier: 3, airport: false, rail: true, seasonProfile: japan, country: KR}
+  - {name: Jeju, aliases: [Jeju Island], lat: 33.4996, lon: 126.5312, tier: 2, airport: true, rail: false, seasonProfile: japan, country: KR, iata: CJU, island: true, islandGroup: jeju}
+  # ---- AE ----
+  - {name: Dubai, aliases: [], lat: 25.2048, lon: 55.2708, tier: 1, airport: true, rail: false, seasonProfile: gulf, country: AE, iata: DXB}
+  - {name: Abu Dhabi, aliases: [], lat: 24.4539, lon: 54.3773, tier: 1, airport: true, rail: false, seasonProfile: gulf, country: AE, iata: AUH}
+  - {name: Sharjah, aliases: [], lat: 25.3463, lon: 55.4209, tier: 2, airport: true, rail: false, seasonProfile: gulf, country: AE, iata: SHJ}
+  - {name: Ras Al Khaimah, aliases: [], lat: 25.8007, lon: 55.9762, tier: 3, airport: true, rail: false, seasonProfile: gulf, country: AE, iata: RKT}
+  # ---- OM ----
+  - {name: Muscat, aliases: [], lat: 23.588, lon: 58.3829, tier: 1, airport: true, rail: false, seasonProfile: gulf, country: OM, iata: MCT}
+  - {name: Nizwa, aliases: [], lat: 22.9333, lon: 57.5333, tier: 3, airport: false, rail: false, seasonProfile: gulf, country: OM}
+  - {name: Sur, aliases: [], lat: 22.5667, lon: 59.5289, tier: 3, airport: false, rail: false, seasonProfile: gulf, country: OM}
+  - {name: Wahiba Sands, aliases: [Sharqiya Sands], lat: 22.45, lon: 58.75, tier: 3, airport: false, rail: false, seasonProfile: gulf, country: OM}
+  - {name: Salalah, aliases: [], lat: 17.0151, lon: 54.0924, tier: 2, airport: true, rail: false, seasonProfile: khareef, country: OM, iata: SLL}
+  # ---- KZ ----
+  - {name: Almaty, aliases: [], lat: 43.222, lon: 76.8512, tier: 1, airport: true, rail: true, seasonProfile: continental, country: KZ, iata: ALA}
+  - {name: Astana, aliases: [Nur-Sultan], lat: 51.1694, lon: 71.4491, tier: 1, airport: true, rail: true, seasonProfile: continental, country: KZ, iata: NQZ}
+  - {name: Shymkent, aliases: [], lat: 42.3417, lon: 69.5901, tier: 2, airport: true, rail: true, seasonProfile: continental, country: KZ, iata: CIT}
+  - {name: Turkistan, aliases: [], lat: 43.2973, lon: 68.2517, tier: 3, airport: true, rail: true, seasonProfile: continental, country: KZ, iata: HSA}
+  - {name: Charyn Canyon, aliases: [Charyn, Kolsai Lakes], lat: 43.352, lon: 79.08, tier: 3, airport: false, rail: false, seasonProfile: continental, country: KZ}
+  # ---- AZ ----
+  - {name: Baku, aliases: [], lat: 40.4093, lon: 49.8671, tier: 1, airport: true, rail: true, seasonProfile: continental, country: AZ, iata: GYD}
+  - {name: Gabala, aliases: [Qabala], lat: 40.9982, lon: 47.87, tier: 3, airport: true, rail: false, seasonProfile: continental, country: AZ, iata: GBB}
+  - {name: Sheki, aliases: [Shaki], lat: 41.1919, lon: 47.1706, tier: 3, airport: false, rail: false, seasonProfile: continental, country: AZ}
+  # ---- GE ----
+  - {name: Tbilisi, aliases: [], lat: 41.7151, lon: 44.8271, tier: 1, airport: true, rail: true, seasonProfile: continental, country: GE, iata: TBS}
+  - {name: Batumi, aliases: [], lat: 41.6168, lon: 41.6367, tier: 2, airport: true, rail: true, seasonProfile: continental, country: GE, iata: BUS}
+  - {name: Kutaisi, aliases: [], lat: 42.2679, lon: 42.6946, tier: 2, airport: true, rail: true, seasonProfile: continental, country: GE, iata: KUT}
+  - {name: Kazbegi, aliases: [Stepantsminda], lat: 42.6574, lon: 44.6418, tier: 3, airport: false, rail: false, seasonProfile: continental, country: GE}
+  # ---- TR ----
+  - {name: Istanbul, aliases: [], lat: 41.0082, lon: 28.9784, tier: 1, airport: true, rail: true, seasonProfile: mediterranean, country: TR, iata: IST}
+  - {name: Cappadocia, aliases: [Goreme], lat: 38.6431, lon: 34.8289, tier: 2, airport: true, rail: false, seasonProfile: mediterranean, country: TR, iata: NAV}
+  - {name: Antalya, aliases: [], lat: 36.8969, lon: 30.7133, tier: 2, airport: true, rail: false, seasonProfile: mediterranean, country: TR, iata: AYT}
+  - {name: Izmir, aliases: [], lat: 38.4237, lon: 27.1428, tier: 2, airport: true, rail: true, seasonProfile: mediterranean, country: TR, iata: ADB}
+  - {name: Pamukkale, aliases: [Denizli], lat: 37.9137, lon: 29.1187, tier: 3, airport: false, rail: false, seasonProfile: mediterranean, country: TR}
+  - {name: Bodrum, aliases: [], lat: 37.0344, lon: 27.4305, tier: 2, airport: true, rail: false, seasonProfile: mediterranean, country: TR, iata: BJV}
+  # ---- EG ----
+  - {name: Cairo, aliases: [Giza], lat: 30.0444, lon: 31.2357, tier: 1, airport: true, rail: true, seasonProfile: gulf, country: EG, iata: CAI}
+  - {name: Alexandria, aliases: [], lat: 31.2001, lon: 29.9187, tier: 2, airport: false, rail: true, seasonProfile: gulf, country: EG}
+  - {name: Luxor, aliases: [], lat: 25.6872, lon: 32.6396, tier: 2, airport: true, rail: true, seasonProfile: gulf, country: EG, iata: LXR}
+  - {name: Aswan, aliases: [], lat: 24.0889, lon: 32.8998, tier: 2, airport: true, rail: true, seasonProfile: gulf, country: EG, iata: ASW}
+  - {name: Hurghada, aliases: [], lat: 27.2579, lon: 33.8116, tier: 2, airport: true, rail: false, seasonProfile: gulf, country: EG, iata: HRG}
+  - {name: Sharm El Sheikh, aliases: [], lat: 27.9158, lon: 34.33, tier: 2, airport: true, rail: false, seasonProfile: gulf, country: EG, iata: SSH}
+  # ---- KE ----
+  - {name: Nairobi, aliases: [], lat: -1.2921, lon: 36.8219, tier: 1, airport: true, rail: true, seasonProfile: safari_east, country: KE, iata: NBO}
+  - {name: Maasai Mara, aliases: [Masai Mara], lat: -1.4061, lon: 35.0081, tier: 3, airport: false, rail: false, seasonProfile: safari_east, country: KE}
+  - {name: Nakuru, aliases: [Lake Nakuru], lat: -0.3031, lon: 36.08, tier: 3, airport: false, rail: false, seasonProfile: safari_east, country: KE}
+  - {name: Amboseli, aliases: [], lat: -2.6527, lon: 37.2606, tier: 3, airport: false, rail: false, seasonProfile: safari_east, country: KE}
+  - {name: Mombasa, aliases: [], lat: -4.0435, lon: 39.6682, tier: 2, airport: true, rail: true, seasonProfile: safari_east, country: KE, iata: MBA}
+  - {name: Diani, aliases: [Diani Beach], lat: -4.2797, lon: 39.5947, tier: 3, airport: false, rail: false, seasonProfile: safari_east, country: KE}
+  # ---- TZ ----
+  - {name: Dar es Salaam, aliases: [], lat: -6.7924, lon: 39.2083, tier: 1, airport: true, rail: true, seasonProfile: safari_east, country: TZ, iata: DAR}
+  - {name: Arusha, aliases: [], lat: -3.3869, lon: 36.683, tier: 2, airport: true, rail: false, seasonProfile: safari_east, country: TZ, iata: JRO}
+  - {name: Serengeti, aliases: [], lat: -2.3333, lon: 34.8333, tier: 3, airport: false, rail: false, seasonProfile: safari_east, country: TZ}
+  - {name: Ngorongoro, aliases: [], lat: -3.24, lon: 35.49, tier: 3, airport: false, rail: false, seasonProfile: safari_east, country: TZ}
+  - {name: Moshi, aliases: [Kilimanjaro], lat: -3.3349, lon: 37.3404, tier: 3, airport: false, rail: false, seasonProfile: safari_east, country: TZ}
+  - {name: Zanzibar, aliases: [Stone Town], lat: -6.1659, lon: 39.2026, tier: 2, airport: true, rail: false, seasonProfile: safari_east, country: TZ, iata: ZNZ, island: true, islandGroup: zanzibar}
+  # ---- ZA ----
+  - {name: Cape Town, aliases: [], lat: -33.9249, lon: 18.4241, tier: 1, airport: true, rail: true, seasonProfile: southern_summer, country: ZA, iata: CPT}
+  - {name: Johannesburg, aliases: [], lat: -26.2041, lon: 28.0473, tier: 1, airport: true, rail: true, seasonProfile: southern_summer, country: ZA, iata: JNB}
+  - {name: Durban, aliases: [], lat: -29.8587, lon: 31.0218, tier: 2, airport: true, rail: true, seasonProfile: southern_summer, country: ZA, iata: DUR}
+  - {name: Kruger, aliases: [Kruger National Park, Hazyview], lat: -24.9948, lon: 31.5969, tier: 3, airport: false, rail: false, seasonProfile: safari_south, country: ZA}
+  - {name: Stellenbosch, aliases: [], lat: -33.9321, lon: 18.8602, tier: 3, airport: false, rail: true, seasonProfile: southern_summer, country: ZA}
+  - {name: Knysna, aliases: [Garden Route], lat: -34.0363, lon: 23.0471, tier: 3, airport: false, rail: false, seasonProfile: southern_summer, country: ZA}
+  # ---- MU ----
+  - {name: Mauritius, aliases: [Port Louis], lat: -20.1609, lon: 57.5012, tier: 1, airport: true, rail: false, seasonProfile: indian_ocean_south, country: MU, iata: MRU, island: true, islandGroup: mauritius}
+  - {name: Grand Baie, aliases: [], lat: -20.0103, lon: 57.58, tier: 3, airport: false, rail: false, seasonProfile: indian_ocean_south, country: MU, island: true, islandGroup: mauritius}
+  - {name: Flic en Flac, aliases: [], lat: -20.2742, lon: 57.3632, tier: 3, airport: false, rail: false, seasonProfile: indian_ocean_south, country: MU, island: true, islandGroup: mauritius}
+  # ---- SC ----
+  - {name: Mahe, aliases: [Victoria, Seychelles], lat: -4.6191, lon: 55.4513, tier: 1, airport: true, rail: false, seasonProfile: indian_ocean_south, country: SC, iata: SEZ, island: true, islandGroup: mahe}
+  - {name: Praslin, aliases: [], lat: -4.3237, lon: 55.7353, tier: 3, airport: true, rail: false, seasonProfile: indian_ocean_south, country: SC, iata: PRI, island: true, islandGroup: praslin}
+  - {name: La Digue, aliases: [], lat: -4.359, lon: 55.84, tier: 3, airport: false, rail: false, seasonProfile: indian_ocean_south, country: SC, island: true, islandGroup: praslin}
+  # ---- MA ----
+  - {name: Marrakech, aliases: [Marrakesh], lat: 31.6295, lon: -7.9811, tier: 1, airport: true, rail: true, seasonProfile: mediterranean, country: MA, iata: RAK}
+  - {name: Casablanca, aliases: [], lat: 33.5731, lon: -7.5898, tier: 1, airport: true, rail: true, seasonProfile: mediterranean, country: MA, iata: CMN}
+  - {name: Fes, aliases: [Fez], lat: 34.0181, lon: -5.0078, tier: 2, airport: true, rail: true, seasonProfile: mediterranean, country: MA, iata: FEZ}
+  - {name: Chefchaouen, aliases: [], lat: 35.1688, lon: -5.2636, tier: 3, airport: false, rail: false, seasonProfile: mediterranean, country: MA}
+  - {name: Merzouga, aliases: [Sahara], lat: 31.0802, lon: -4.0133, tier: 3, airport: false, rail: false, seasonProfile: mediterranean, country: MA}
+  - {name: Tangier, aliases: [Tanger], lat: 35.7595, lon: -5.834, tier: 2, airport: true, rail: true, seasonProfile: mediterranean, country: MA, iata: TNG}
+  # ---- GB ----
+  - {name: London, aliases: [], lat: 51.5074, lon: -0.1278, tier: 1, airport: true, rail: true, seasonProfile: temperate_north, country: GB, iata: LON}
+  - {name: Edinburgh, aliases: [], lat: 55.9533, lon: -3.1883, tier: 2, airport: true, rail: true, seasonProfile: temperate_north, country: GB, iata: EDI}
+  - {name: Manchester, aliases: [], lat: 53.4808, lon: -2.2426, tier: 1, airport: true, rail: true, seasonProfile: temperate_north, country: GB, iata: MAN}
+  - {name: Liverpool, aliases: [], lat: 53.4084, lon: -2.9916, tier: 2, airport: true, rail: true, seasonProfile: temperate_north, country: GB, iata: LPL}
+  - {name: Oxford, aliases: [], lat: 51.752, lon: -1.2577, tier: 3, airport: false, rail: true, seasonProfile: temperate_north, country: GB}
+  - {name: Bath, aliases: [], lat: 51.3811, lon: -2.359, tier: 3, airport: false, rail: true, seasonProfile: temperate_north, country: GB}
+  # ---- FR ----
+  - {name: Paris, aliases: [], lat: 48.8566, lon: 2.3522, tier: 1, airport: true, rail: true, seasonProfile: temperate_north, country: FR, iata: PAR}
+  - {name: Nice, aliases: [], lat: 43.7102, lon: 7.262, tier: 2, airport: true, rail: true, seasonProfile: mediterranean, country: FR, iata: NCE}
+  - {name: Lyon, aliases: [], lat: 45.764, lon: 4.8357, tier: 2, airport: true, rail: true, seasonProfile: temperate_north, country: FR, iata: LYS}
+  - {name: Marseille, aliases: [], lat: 43.2965, lon: 5.3698, tier: 2, airport: true, rail: true, seasonProfile: mediterranean, country: FR, iata: MRS}
+  - {name: Bordeaux, aliases: [], lat: 44.8378, lon: -0.5792, tier: 2, airport: true, rail: true, seasonProfile: temperate_north, country: FR, iata: BOD}
+  - {name: Strasbourg, aliases: [], lat: 48.5734, lon: 7.7521, tier: 3, airport: false, rail: true, seasonProfile: temperate_north, country: FR}
+  # ---- CH ----
+  - {name: Zurich, aliases: [], lat: 47.3769, lon: 8.5417, tier: 1, airport: true, rail: true, seasonProfile: alpine, country: CH, iata: ZRH}
+  - {name: Geneva, aliases: [], lat: 46.2044, lon: 6.1432, tier: 1, airport: true, rail: true, seasonProfile: alpine, country: CH, iata: GVA}
+  - {name: Lucerne, aliases: [Luzern], lat: 47.0502, lon: 8.3093, tier: 2, airport: false, rail: true, seasonProfile: alpine, country: CH}
+  - {name: Interlaken, aliases: [], lat: 46.6863, lon: 7.8632, tier: 3, airport: false, rail: true, seasonProfile: alpine, country: CH}
+  - {name: Zermatt, aliases: [], lat: 46.0207, lon: 7.7491, tier: 3, airport: false, rail: true, seasonProfile: alpine, country: CH}
+  - {name: Bern, aliases: [], lat: 46.948, lon: 7.4474, tier: 2, airport: false, rail: true, seasonProfile: alpine, country: CH}
+  # ---- IT ----
+  - {name: Rome, aliases: [Roma], lat: 41.9028, lon: 12.4964, tier: 1, airport: true, rail: true, seasonProfile: mediterranean, country: IT, iata: ROM}
+  - {name: Florence, aliases: [Firenze], lat: 43.7696, lon: 11.2558, tier: 2, airport: true, rail: true, seasonProfile: mediterranean, country: IT, iata: FLR}
+  - {name: Venice, aliases: [Venezia], lat: 45.4408, lon: 12.3155, tier: 2, airport: true, rail: true, seasonProfile: mediterranean, country: IT, iata: VCE}
+  - {name: Milan, aliases: [Milano], lat: 45.4642, lon: 9.19, tier: 1, airport: true, rail: true, seasonProfile: mediterranean, country: IT, iata: MIL}
+  - {name: Naples, aliases: [Napoli], lat: 40.8518, lon: 14.2681, tier: 2, airport: true, rail: true, seasonProfile: mediterranean, country: IT, iata: NAP}
+  - {name: Amalfi, aliases: [Amalfi Coast, Positano], lat: 40.634, lon: 14.6027, tier: 3, airport: false, rail: false, seasonProfile: mediterranean, country: IT}
+  - {name: Pisa, aliases: [], lat: 43.7228, lon: 10.4017, tier: 3, airport: true, rail: true, seasonProfile: mediterranean, country: IT, iata: PSA}
+  # ---- US ----
+  - {name: New York, aliases: [New York City, NYC, Manhattan], lat: 40.7128, lon: -74.006, tier: 1, airport: true, rail: true, seasonProfile: temperate_north, country: US, iata: NYC}
+  - {name: Washington, aliases: [Washington DC, Washington D.C.], lat: 38.9072, lon: -77.0369, tier: 1, airport: true, rail: true, seasonProfile: temperate_north, country: US, iata: WAS}
+  - {name: Boston, aliases: [], lat: 42.3601, lon: -71.0589, tier: 1, airport: true, rail: true, seasonProfile: temperate_north, country: US, iata: BOS}
+  - {name: Chicago, aliases: [], lat: 41.8781, lon: -87.6298, tier: 1, airport: true, rail: true, seasonProfile: temperate_north, country: US, iata: CHI}
+  - {name: Niagara Falls, aliases: [Niagara], lat: 43.0962, lon: -79.0377, tier: 3, airport: false, rail: true, seasonProfile: temperate_north, country: US}
+  - {name: Los Angeles, aliases: [LA], lat: 34.0522, lon: -118.2437, tier: 1, airport: true, rail: true, seasonProfile: temperate_north, country: US, iata: LAX}
+  - {name: San Francisco, aliases: [], lat: 37.7749, lon: -122.4194, tier: 1, airport: true, rail: true, seasonProfile: temperate_north, country: US, iata: SFO}
+  - {name: Las Vegas, aliases: [], lat: 36.1699, lon: -115.1398, tier: 2, airport: true, rail: false, seasonProfile: temperate_north, country: US, iata: LAS}
+  - {name: Orlando, aliases: [], lat: 28.5383, lon: -81.3792, tier: 2, airport: true, rail: true, seasonProfile: temperate_north, country: US, iata: MCO}
+  - {name: Seattle, aliases: [], lat: 47.6062, lon: -122.3321, tier: 1, airport: true, rail: true, seasonProfile: temperate_north, country: US, iata: SEA}

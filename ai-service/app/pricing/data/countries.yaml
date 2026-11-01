@@ -1,0 +1,67 @@
+# Supported destination countries (v2). Indicative values only; review periodically.
+#
+# priceIndex: typical traveller cost level vs India (1.0) for stays, food, activities, local and in-country transport
+# seasonProfile: default profile (seasons.yaml) for cities of the country that are not in cities.yaml
+# roadNeighbours: countries reachable from this one by road (all other cross-border legs are flight-only)
+# visaNote: short hint for Indian passport holders; always verify on official sources (rules change often)
+countries:
+  IN: {name: India, currency: INR, priceIndex: 1.0, seasonProfile: metro, roadNeighbours: [NP, BT],
+       visaNote: ""}
+  NP: {name: Nepal, currency: NPR, priceIndex: 0.8, seasonProfile: himalaya, roadNeighbours: [IN],
+       visaNote: "Indian citizens need no visa for Nepal; carry a passport or voter ID."}
+  BT: {name: Bhutan, currency: BTN, priceIndex: 1.6, seasonProfile: himalaya, roadNeighbours: [IN],
+       visaNote: "Indian citizens need an entry permit and pay a daily Sustainable Development Fee in Bhutan."}
+  LK: {name: Sri Lanka, currency: LKR, priceIndex: 1.0, seasonProfile: tropical_west, roadNeighbours: [],
+       visaNote: "Sri Lanka requires an ETA for most visitors; check the official ETA site."}
+  MV: {name: Maldives, currency: MVR, priceIndex: 3.0, seasonProfile: maldives, roadNeighbours: [],
+       visaNote: "The Maldives grants visa on arrival to most visitors with a confirmed stay."}
+  TH: {name: Thailand, currency: THB, priceIndex: 1.4, seasonProfile: tropical_west, roadNeighbours: [MY],
+       visaNote: "Thailand's entry rules for Indian passports change often; check the official e-visa site."}
+  VN: {name: Vietnam, currency: VND, priceIndex: 0.9, seasonProfile: tropical_west, roadNeighbours: [],
+       visaNote: "Vietnam requires an e-visa for Indian passport holders."}
+  SG: {name: Singapore, currency: SGD, priceIndex: 3.0, seasonProfile: equatorial, roadNeighbours: [MY],
+       visaNote: "Singapore requires a visa for Indian passport holders, applied via an authorised agent."}
+  MY: {name: Malaysia, currency: MYR, priceIndex: 1.2, seasonProfile: equatorial, roadNeighbours: [TH, SG],
+       visaNote: "Malaysia's visa rules for Indian passports change often; check the official site."}
+  ID: {name: Indonesia, currency: IDR, priceIndex: 1.1, seasonProfile: southern_tropics, roadNeighbours: [],
+       visaNote: "Indonesia offers visa on arrival / e-VOA to Indian passport holders."}
+  JP: {name: Japan, currency: JPY, priceIndex: 2.6, seasonProfile: japan, roadNeighbours: [],
+       visaNote: "Japan requires a visa (e-visa available) for Indian passport holders."}
+  KR: {name: South Korea, currency: KRW, priceIndex: 2.4, seasonProfile: japan, roadNeighbours: [],
+       visaNote: "South Korea requires a visa for Indian passport holders."}
+  AE: {name: United Arab Emirates, currency: AED, priceIndex: 2.8, seasonProfile: gulf, roadNeighbours: [OM],
+       visaNote: "The UAE requires a visa for most Indian passport holders (visa on arrival for some)."}
+  OM: {name: Oman, currency: OMR, priceIndex: 2.4, seasonProfile: gulf, roadNeighbours: [AE],
+       visaNote: "Oman offers e-visas; short visa-free stays may apply. Check the official site."}
+  KZ: {name: Kazakhstan, currency: KZT, priceIndex: 1.3, seasonProfile: continental, roadNeighbours: [],
+       visaNote: "Kazakhstan allows short visa-free stays for Indian passport holders."}
+  AZ: {name: Azerbaijan, currency: AZN, priceIndex: 1.3, seasonProfile: continental, roadNeighbours: [GE],
+       visaNote: "Azerbaijan offers an e-visa (ASAN) for Indian passport holders."}
+  GE: {name: Georgia, currency: GEL, priceIndex: 1.2, seasonProfile: continental, roadNeighbours: [AZ],
+       visaNote: "Georgia offers an e-visa; visa-free entry applies with some valid visas."}
+  TR: {name: Turkey, currency: TRY, priceIndex: 1.6, seasonProfile: mediterranean, roadNeighbours: [],
+       visaNote: "Turkey requires a visa; an e-visa is available with some valid visas."}
+  EG: {name: Egypt, currency: EGP, priceIndex: 1.0, seasonProfile: gulf, roadNeighbours: [],
+       visaNote: "Egypt offers an e-visa for Indian passport holders."}
+  KE: {name: Kenya, currency: KES, priceIndex: 1.8, seasonProfile: safari_east, roadNeighbours: [TZ],
+       visaNote: "Kenya requires an Electronic Travel Authorisation (eTA)."}
+  TZ: {name: Tanzania, currency: TZS, priceIndex: 2.0, seasonProfile: safari_east, roadNeighbours: [KE],
+       visaNote: "Tanzania offers an e-visa and visa on arrival."}
+  ZA: {name: South Africa, currency: ZAR, priceIndex: 1.6, seasonProfile: southern_summer, roadNeighbours: [],
+       visaNote: "South Africa requires a visa (e-visa available) for Indian passport holders."}
+  MU: {name: Mauritius, currency: MUR, priceIndex: 2.0, seasonProfile: indian_ocean_south, roadNeighbours: [],
+       visaNote: "Mauritius grants visa-free entry on arrival to Indian passport holders."}
+  SC: {name: Seychelles, currency: SCR, priceIndex: 3.2, seasonProfile: indian_ocean_south, roadNeighbours: [],
+       visaNote: "Seychelles grants a visitor permit on arrival; a travel authorisation is required beforehand."}
+  MA: {name: Morocco, currency: MAD, priceIndex: 1.3, seasonProfile: mediterranean, roadNeighbours: [],
+       visaNote: "Morocco offers an e-visa for Indian passport holders."}
+  GB: {name: United Kingdom, currency: GBP, priceIndex: 3.4, seasonProfile: temperate_north, roadNeighbours: [],
+       visaNote: "The UK requires a visitor visa for Indian passport holders."}
+  FR: {name: France, currency: EUR, priceIndex: 3.2, seasonProfile: temperate_north, roadNeighbours: [CH, IT],
+       visaNote: "France requires a Schengen visa for Indian passport holders."}
+  CH: {name: Switzerland, currency: CHF, priceIndex: 4.2, seasonProfile: alpine, roadNeighbours: [FR, IT],
+       visaNote: "Switzerland requires a Schengen visa for Indian passport holders."}
+  IT: {name: Italy, currency: EUR, priceIndex: 3.0, seasonProfile: mediterranean, roadNeighbours: [FR, CH],
+       visaNote: "Italy requires a Schengen visa for Indian passport holders."}
+  US: {name: United States, currency: USD, priceIndex: 3.4, seasonProfile: temperate_north, roadNeighbours: [],
+       visaNote: "The USA requires a B1/B2 visitor visa; appointment wait times can be long."}

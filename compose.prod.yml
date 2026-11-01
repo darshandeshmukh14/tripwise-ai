@@ -1,0 +1,84 @@
+# Single-server production stack: docker compose -f compose.prod.yml up -d --build
+# Settings come from .env (copy .env.prod.example). Only Caddy publishes ports (80/443); everything else stays internal.
+services:
+  postgres:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: tripwise_db
+      POSTGRES_USER: tripwise_user
+      POSTGRES_PASSWORD: ${DB_PASSWORD:?set DB_PASSWORD in .env}
+      TZ: UTC
+      PGTZ: UTC
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U tripwise_user -d tripwise_db"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+  ai-service:
+    build: ./ai-service
+    restart: unless-stopped
+    environment:
+      INTERNAL_API_TOKEN: ${AI_SERVICE_API_KEY:?set AI_SERVICE_API_KEY in .env}
+      LLM_PROVIDER: ${LLM_PROVIDER:?set LLM_PROVIDER (gemini, openrouter or fake) in .env}
+      GEMINI_API_KEY: ${GEMINI_API_KEY:-}
+      OPENROUTER_API_KEY: ${OPENROUTER_API_KEY:-}
+      OPENROUTER_MODEL: ${OPENROUTER_MODEL:-openai/gpt-4o-mini}
+      GEMINI_MODEL: ${GEMINI_MODEL:-gemini-2.5-flash}
+      LLM_DAILY_CAP: ${LLM_DAILY_CAP:-500}
+      GROUNDING_ENABLED: ${GROUNDING_ENABLED:-false}
+
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile.backend
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+      ai-service:
+        condition: service_healthy
+    environment:
+      DB_URL: jdbc:postgresql://postgres:5432/tripwise_db
+      DB_USERNAME: tripwise_user
+      DB_PASSWORD: ${DB_PASSWORD}
+      JWT_SECRET: ${JWT_SECRET:?set JWT_SECRET in .env}
+      AI_SERVICE_API_KEY: ${AI_SERVICE_API_KEY}
+      AI_SERVICE_BASE_URL: http://ai-service:8000
+      OPENAPI_ENABLED: "false"
+      RATE_LIMIT_WEB_HINTS_CAPACITY: ${RATE_LIMIT_WEB_HINTS_CAPACITY:-20}
+      JAVA_TOOL_OPTIONS: ${BACKEND_JAVA_OPTS:--XX:MaxRAMPercentage=60}
+
+  frontend:
+    build: ./frontend
+    restart: unless-stopped
+    depends_on:
+      - backend
+    environment:
+      BACKEND_URL: http://backend:8080
+      # Caddy sets X-Forwarded-For; the BFF passes it on so Spring rate-limits by real client IP
+      TRUST_PROXY_HEADERS: "true"
+
+  caddy:
+    image: caddy:2-alpine
+    restart: unless-stopped
+    depends_on:
+      - frontend
+    ports:
+      - "80:80"
+      - "443:443"
+      - "443:443/udp"
+    environment:
+      DOMAIN: ${DOMAIN:?set DOMAIN in .env}
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+
+volumes:
+  pgdata:
+  caddy_data:
+  caddy_config:

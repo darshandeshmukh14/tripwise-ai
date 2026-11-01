@@ -1,0 +1,21 @@
+target/
+!.mvn/wrapper/maven-wrapper.jar
+*.iml
+.idea/
+out/
+.vscode/
+*.log
+.env
+.DS_Store
+/data/
+
+# ai-service (Python)
+ai-service/.venv/
+ai-service/.pytest_cache/
+ai-service/.ruff_cache/
+__pycache__/
+*.egg-info/
+
+# frontend (see also frontend/.gitignore)
+frontend/node_modules/
+frontend/.next/
