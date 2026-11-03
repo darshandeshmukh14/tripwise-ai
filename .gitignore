@@ -15,6 +15,7 @@ ai-service/.pytest_cache/
 ai-service/.ruff_cache/
 __pycache__/
 *.egg-info/
+ai-service/.env
 
 # frontend (see also frontend/.gitignore)
 frontend/node_modules/

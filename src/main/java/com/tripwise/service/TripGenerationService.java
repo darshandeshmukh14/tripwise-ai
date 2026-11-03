@@ -79,7 +79,10 @@ public class TripGenerationService {
                 .map(tripMapper::toAiRequest)
                 .orElseThrow(() -> new ResourceNotFoundException("Trip not found.")));
 
-        AiClarifyResponse response = aiServiceClient.clarify(request);
+        return toClarifyResponse(aiServiceClient.clarify(request));
+    }
+
+    static ClarifyResponse toClarifyResponse(AiClarifyResponse response) {
         return new ClarifyResponse(response.questions().stream()
                 .map(q -> new ClarifyResponse.Question(q.id(), q.text(), q.type(),
                         q.options() == null ? List.of() : List.copyOf(q.options())))

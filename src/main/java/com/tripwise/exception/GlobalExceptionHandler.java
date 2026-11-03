@@ -90,6 +90,11 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         return problem;
     }
 
+    @ExceptionHandler(InvalidPlanException.class)
+    public ProblemDetail handleInvalidPlan(InvalidPlanException ex) {
+        return problem(HttpStatus.BAD_REQUEST, "Invalid plan", ex.getMessage());
+    }
+
     @ExceptionHandler(InvalidRefreshTokenException.class)
     public ProblemDetail handleInvalidRefreshToken(InvalidRefreshTokenException ex) {
         return problem(HttpStatus.UNAUTHORIZED, "Session expired", ex.getMessage());

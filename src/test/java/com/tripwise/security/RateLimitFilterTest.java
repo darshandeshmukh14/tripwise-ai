@@ -32,7 +32,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
         "spring.datasource.url=jdbc:h2:mem:rate-limit-test;MODE=PostgreSQL;DATABASE_TO_LOWER=TRUE;DEFAULT_NULL_ORDERING=HIGH;DB_CLOSE_DELAY=-1",
         "rate-limit.enabled=true",
         "rate-limit.auth.capacity=3",
-        "rate-limit.ai.capacity=1"})
+        "rate-limit.ai.capacity=1",
+        "rate-limit.guest-generate.capacity=1"})
 class RateLimitFilterTest {
 
     @Autowired
@@ -77,6 +78,21 @@ class RateLimitFilterTest {
 
         // Non-AI writes are not limited per user
         mockMvc.perform(get("/api/v1/trips").header(HttpHeaders.AUTHORIZATION, token)).andExpect(status().isOk());
+    }
+
+    @Test
+    void guestGenerate_overLimitPerIp_return429WithoutToken() throws Exception {
+        guestGenerate("10.0.0.70").andExpect(status().isBadRequest());
+
+        guestGenerate("10.0.0.70")
+                .andExpect(status().isTooManyRequests())
+                .andExpect(jsonPath("$.status").value(429));
+        guestGenerate("10.0.0.71").andExpect(status().isBadRequest());
+    }
+
+    private ResultActions guestGenerate(String ip) throws Exception {
+        return mockMvc.perform(post("/api/v1/guest/generate").contentType(MediaType.APPLICATION_JSON).content("{}")
+                .with(r -> { r.setRemoteAddr(ip); return r; }));
     }
 
     private ResultActions register(String ip) throws Exception {

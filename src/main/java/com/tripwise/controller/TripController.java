@@ -1,5 +1,6 @@
 package com.tripwise.controller;
 
+import com.tripwise.dto.ClaimTripRequest;
 import com.tripwise.dto.ClarifyResponse;
 import com.tripwise.dto.CreateTripRequest;
 import com.tripwise.dto.GenerateTripRequest;
@@ -9,6 +10,7 @@ import com.tripwise.dto.TripDetailResponse;
 import com.tripwise.dto.TripStatusResponse;
 import com.tripwise.dto.TripSummaryResponse;
 import com.tripwise.dto.UpdateTripRequest;
+import com.tripwise.service.GuestPlanService;
 import com.tripwise.service.TripGenerationService;
 import com.tripwise.service.TripService;
 import com.tripwise.service.TripStopService;
@@ -39,12 +41,21 @@ public class TripController {
     private final TripService tripService;
     private final TripGenerationService tripGenerationService;
     private final TripStopService tripStopService;
+    private final GuestPlanService guestPlanService;
 
     @PostMapping
     public ResponseEntity<TripDetailResponse> createTrip(@Valid @RequestBody CreateTripRequest request) {
         TripDetailResponse created = tripService.createTrip(request);
         URI location = ServletUriComponentsBuilder.fromCurrentRequest()
                 .path("/{id}").buildAndExpand(created.id()).toUri();
+        return ResponseEntity.created(location).body(created);
+    }
+
+    @PostMapping("/claim")
+    public ResponseEntity<TripDetailResponse> claimGuestTrip(@Valid @RequestBody ClaimTripRequest request) {
+        TripDetailResponse created = guestPlanService.claim(request);
+        URI location = ServletUriComponentsBuilder.fromCurrentContextPath()
+                .path("/api/v1/trips/{id}").buildAndExpand(created.id()).toUri();
         return ResponseEntity.created(location).body(created);
     }
 

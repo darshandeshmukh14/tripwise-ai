@@ -3,6 +3,10 @@ import type {
   ChatReply,
   ClarifyResponse,
   CreateTripRequest,
+  GuestChatReply,
+  GuestTrip,
+  GuestTurn,
+  ItineraryPlan,
   Me,
   Page,
   StopSuggestions,
@@ -77,6 +81,27 @@ export const tripsApi = {
   /** `expectedVersion`: itinerary version the user is looking at; a newer plan on the server answers 409. */
   sendMessage: (id: number, content: string, expectedVersion?: number) =>
     backend<ChatReply>(`trips/${id}/messages`, "POST", { content, expectedVersion }),
+  /** Saves a plan made without an account to the signed-in user's trips. */
+  claim: (body: { trip: CreateTripRequest; answers: Record<string, string>; plan: ItineraryPlan }) =>
+    backend<TripDetail>("trips/claim", "POST", body),
+};
+
+const guest = <T>(path: string, body: unknown) => request<T>(`/api/guest/${path}`, "POST", body);
+
+/** Planning without an account; nothing is stored on the server. */
+export const guestApi = {
+  clarify: (trip: CreateTripRequest, answers: Record<string, string> = {}) =>
+    guest<ClarifyResponse>("clarify", { trip, answers }),
+  generate: (trip: CreateTripRequest, answers: Record<string, string>) => guest<GuestTrip>("generate", { trip, answers }),
+  suggestStops: (trip: CreateTripRequest, answers: Record<string, string>) =>
+    guest<StopSuggestions>("stops/suggest", { trip, answers }),
+  sendMessage: (body: {
+    trip: CreateTripRequest;
+    answers: Record<string, string>;
+    plan: ItineraryPlan;
+    history: GuestTurn[];
+    content: string;
+  }) => guest<GuestChatReply>("messages", body),
 };
 
 export const CHAT_PAGE_SIZE = 30;

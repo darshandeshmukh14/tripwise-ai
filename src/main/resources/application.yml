@@ -101,6 +101,11 @@ rate-limit:
     # Per user: plans/chat replies that may use Gemini web-search price hints
     capacity: ${RATE_LIMIT_WEB_HINTS_CAPACITY:20}
     period: 1d
+  guest-generate:
+    # Per client IP: plans made without an account (nothing saved). Needs TRUST_PROXY_HEADERS on the BFF, otherwise
+    # all guests share the BFF's IP and this budget.
+    capacity: ${RATE_LIMIT_GUEST_GENERATE_CAPACITY:5}
+    period: 1d
 
 cors:
   # Comma-separated browser origins; empty = no cross-origin access (the BFF calls server-to-server)

@@ -44,22 +44,35 @@ public class ItineraryWriter {
                     return created;
                 });
 
-        String currency = plan.currencyOrDefault();
-        itinerary.setTotalEstimatedCost(money(plan.total()));
-        itinerary.setCurrency(currency);
-        itinerary.setFxRate(plan.fx() == null ? null : plan.fx().rate().setScale(8, RoundingMode.HALF_UP));
-        itinerary.setFxAsOf(plan.fx() == null ? null : plan.fx().asOf());
-        itinerary.setPlanData(objectMapper.valueToTree(plan));
+        applyPlan(itinerary, plan);
         tripItineraryRepository.save(itinerary);
 
         int version = itinerary.getVersion();
-        List<TripCostItem> items = plan.costBreakdown().stream()
-                .map(line -> toEntity(trip, version, currency, line))
-                .toList();
-        tripCostItemRepository.saveAll(items);
+        tripCostItemRepository.saveAll(toCostItems(trip, version, plan));
 
         trip.setStatus(TripStatus.COMPLETED);
         return version;
+    }
+
+    /**
+     * Copies the plan's totals, exchange rate and JSON onto {@code itinerary} without persisting anything.
+     */
+    public void applyPlan(TripItinerary itinerary, AiItineraryResponse plan) {
+        itinerary.setTotalEstimatedCost(money(plan.total()));
+        itinerary.setCurrency(plan.currencyOrDefault());
+        itinerary.setFxRate(plan.fx() == null ? null : plan.fx().rate().setScale(8, RoundingMode.HALF_UP));
+        itinerary.setFxAsOf(plan.fx() == null ? null : plan.fx().asOf());
+        itinerary.setPlanData(objectMapper.valueToTree(plan));
+    }
+
+    /**
+     * Builds (does not persist) the cost items of {@code plan} for itinerary {@code version}.
+     */
+    public List<TripCostItem> toCostItems(Trip trip, int version, AiItineraryResponse plan) {
+        String currency = plan.currencyOrDefault();
+        return plan.costBreakdown().stream()
+                .map(line -> toEntity(trip, version, currency, line))
+                .toList();
     }
 
     private static TripCostItem toEntity(Trip trip, int version, String currency, AiItineraryResponse.CostItem line) {

@@ -7,12 +7,22 @@ import Link from "next/link";
 import { Alert, Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { errorMessage, tripsApi } from "@/lib/api/client";
+import { errorMessage } from "@/lib/api/client";
+import type { StopSuggestions as StopSuggestionsData } from "@/lib/api/types";
 import { formatRange, titleCase } from "@/lib/format";
 
 /** "What else can I club in?": nearby places (≤400 km from a stop) with extra cost, loaded on demand. */
-export function StopSuggestions({ tripId, disabled }: { tripId: number; disabled?: boolean }) {
-  const suggest = useMutation({ mutationFn: () => tripsApi.suggestStops(tripId) });
+export function StopSuggestions({
+  load,
+  editHref,
+  disabled,
+}: {
+  load: () => Promise<StopSuggestionsData>;
+  /** Where to add a stop; omitted for plans made without an account. */
+  editHref?: string;
+  disabled?: boolean;
+}) {
+  const suggest = useMutation({ mutationFn: load });
   const items = suggest.data?.suggestions;
   return (
     <Card>
@@ -48,9 +58,11 @@ export function StopSuggestions({ tripId, disabled }: { tripId: number; disabled
                 </li>
               ))}
             </ul>
-            <Link href={`/trips/${tripId}/edit`} className="text-sm text-primary underline">
-              Edit trip to add a stop
-            </Link>
+            {editHref && (
+              <Link href={editHref} className="text-sm text-primary underline">
+                Edit trip to add a stop
+              </Link>
+            )}
           </>
         )}
       </CardContent>

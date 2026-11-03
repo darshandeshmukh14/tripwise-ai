@@ -17,7 +17,7 @@ import java.util.regex.Pattern;
 /**
  * Rejects AI responses that are structurally invalid or whose numbers don't add up, so nothing bad is persisted.
  */
-final class AiResponseValidator {
+public final class AiResponseValidator {
 
     // Per-line rounding on the Python side may leave a few units of drift
     private static final BigDecimal TOTAL_TOLERANCE = new BigDecimal("5.00");
@@ -31,7 +31,12 @@ final class AiResponseValidator {
     private AiResponseValidator() {
     }
 
-    static void validateItinerary(AiItineraryResponse response) {
+    /**
+     * Also used for plans sent back by the browser (guest chat and claim).
+     *
+     * @throws AiServiceException if the plan is invalid
+     */
+    public static void validateItinerary(AiItineraryResponse response) {
         if (response == null) {
             fail("empty body");
         }

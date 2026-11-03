@@ -47,6 +47,6 @@ class LoginRateLimiterTest {
 
     private static RateLimitProperties properties(boolean enabled) {
         return new RateLimitProperties(enabled, LOOSE, new RateLimitProperties.Rule(2, Duration.ofMinutes(1)), LOOSE,
-                LOOSE);
+                LOOSE, LOOSE);
     }
 }

@@ -16,11 +16,14 @@ import java.time.Duration;
  *                   quota and cost
  * @param webHints   per user on Gemini web-search price hints (grounded calls are the most expensive); when the
  *                   budget is used up plans fall back to estimates instead of failing
+ * @param guestGenerate per client IP on POST /api/v1/guest/generate (planning without an account); other guest AI
+ *                      endpoints use {@code ai} per client IP
  */
 @Validated
 @ConfigurationProperties(prefix = "rate-limit")
 public record RateLimitProperties(boolean enabled, @NotNull @Valid Rule auth, @NotNull @Valid Rule loginEmail,
-                                  @NotNull @Valid Rule ai, @NotNull @Valid Rule webHints) {
+                                  @NotNull @Valid Rule ai, @NotNull @Valid Rule webHints,
+                                  @NotNull @Valid Rule guestGenerate) {
 
     /**
      * Allows {@code capacity} requests per {@code period}, refilled gradually.

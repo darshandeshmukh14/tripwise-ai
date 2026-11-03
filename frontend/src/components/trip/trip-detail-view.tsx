@@ -6,18 +6,11 @@ import Link from "next/link";
 import { useParams, useRouter } from "next/navigation";
 import { useEffect } from "react";
 
-import { BookingLinks } from "@/components/trip/booking-links";
 import { ChatPanel } from "@/components/trip/chat-panel";
-import { CostBreakdownTable } from "@/components/trip/cost-breakdown-table";
-import { CostSummary } from "@/components/trip/cost-summary";
-import { DayByDay } from "@/components/trip/day-by-day";
+import { ItinerarySections } from "@/components/trip/itinerary-sections";
 import { PlanGenerator } from "@/components/trip/plan-generator";
-import { RouteTimeline } from "@/components/trip/route-timeline";
-import { StayCard } from "@/components/trip/stay-card";
 import { StatusBadge } from "@/components/trip/status-badge";
 import { StopSuggestions } from "@/components/trip/stop-suggestions";
-import { TransportComparison } from "@/components/trip/transport-comparison";
-import { WebHints } from "@/components/trip/web-hints";
 import { Alert } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -70,9 +63,6 @@ export function TripDetailView() {
   // Editing a trip resets it to DRAFT but keeps the last itinerary.
   const stale = !!itinerary && t.status === "DRAFT";
   const plan = itinerary?.plan;
-  const currency = itinerary?.currency || plan?.currency || "INR";
-  const planStops = plan?.stops ?? [];
-  const stopNames = Object.fromEntries(planStops.map((s) => [s.seq, s.city]));
   const sortedStops = [...t.stops].sort((a, b) => a.seq - b.seq);
   return (
     <div className="space-y-6">
@@ -152,20 +142,10 @@ export function TripDetailView() {
       {itinerary && plan && (
         <div className="grid gap-6 lg:grid-cols-[1fr_380px]">
           <div className="space-y-6">
-            <CostSummary itinerary={itinerary} budget={t.budgetAmount} budgetCurrency={t.currency || "INR"} />
-            {planStops.length > 0 ? (
-              <RouteTimeline stops={planStops} legs={plan.legs ?? []} currency={currency} />
-            ) : (
-              <>
-                {!!plan.transportOptions?.length && <TransportComparison options={plan.transportOptions} currency={currency} />}
-                {plan.stay && <StayCard stay={plan.stay} currency={currency} />}
-              </>
+            <ItinerarySections itinerary={itinerary} budget={t.budgetAmount} budgetCurrency={t.currency || "INR"} />
+            {t.status === "COMPLETED" && (
+              <StopSuggestions load={() => tripsApi.suggestStops(t.id)} editHref={`/trips/${t.id}/edit`} />
             )}
-            <DayByDay days={plan.days} />
-            {itinerary.costBreakdown && <CostBreakdownTable breakdown={itinerary.costBreakdown} stopNames={stopNames} />}
-            {!!plan.bookingLinks?.length && <BookingLinks links={plan.bookingLinks} />}
-            {!!plan.webHints?.length && <WebHints hints={plan.webHints} />}
-            {t.status === "COMPLETED" && <StopSuggestions tripId={t.id} />}
             {t.status === "COMPLETED" && (
               <div className="rounded-lg border border-dashed border-border p-4">
                 <p className="mb-3 text-sm text-muted-foreground">Changed your trip details? Rebuild the plan from scratch.</p>

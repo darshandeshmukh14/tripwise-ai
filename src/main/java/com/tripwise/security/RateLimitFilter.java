@@ -35,6 +35,8 @@ public class RateLimitFilter extends OncePerRequestFilter {
 
     private static final Pattern AI_PATH =
             Pattern.compile("^/api/v1/trips/\\d+/(generate|clarify|messages|stops/suggest)$");
+    private static final String GUEST_GENERATE_PATH = "/api/v1/guest/generate";
+    private static final Pattern GUEST_AI_PATH = Pattern.compile("^/api/v1/guest/(clarify|messages|stops/suggest)$");
 
     private final RateLimitProperties properties;
     private final ObjectMapper objectMapper;
@@ -69,6 +71,12 @@ public class RateLimitFilter extends OncePerRequestFilter {
                 key = "ai:" + user.id();
                 rule = properties.ai();
             }
+        } else if (path.equals(GUEST_GENERATE_PATH)) {
+            key = "guest-generate:" + request.getRemoteAddr();
+            rule = properties.guestGenerate();
+        } else if (GUEST_AI_PATH.matcher(path).matches()) {
+            key = "guest-ai:" + request.getRemoteAddr();
+            rule = properties.ai();
         }
 
         if (key != null) {

@@ -11,6 +11,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { FieldError, Input, Label } from "@/components/ui/form-controls";
 import { ApiError, authApi, errorMessage } from "@/lib/api/client";
+import { afterSignInPath } from "@/lib/guest-plan";
 import { registerSchema, type RegisterValues } from "@/lib/validation";
 
 export default function RegisterPage() {
@@ -26,7 +27,7 @@ export default function RegisterPage() {
     setError(null);
     try {
       await authApi.register(values);
-      router.push("/trips");
+      router.push(await afterSignInPath());
     } catch (e) {
       if (e instanceof ApiError) {
         for (const [field, message] of Object.entries(e.fieldErrors)) {

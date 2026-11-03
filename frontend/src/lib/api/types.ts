@@ -47,6 +47,11 @@ export type ChatReply = Omit<Strict<S["ChatReplyResponse"], "itineraryVersion">,
   assistantMessage: ChatMessage;
 };
 
+/** Planning without an account: nothing is stored, so the trip has no id. Hand-written until `npm run gen:api`. */
+export type GuestTrip = Omit<TripDetail, "id" | "createdAt" | "updatedAt" | "itinerary"> & { itinerary: Itinerary };
+export type GuestTurn = { role: "USER" | "ASSISTANT"; content: string };
+export type GuestChatReply = { assistantMessage: string; itineraryUpdated: boolean; trip: GuestTrip };
+
 export interface Page<T> {
   content: T[];
   page: number;

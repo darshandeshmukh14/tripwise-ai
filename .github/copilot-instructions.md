@@ -13,7 +13,7 @@ AI-assisted travel planning platform. Users register/login (JWT), create trips, 
 ## Key files
 - `pom.xml` - dependencies (no Maven wrapper; use `mvn`).
 - `docker-compose.yml` - PostgreSQL 16 (`tripwise_db` / `tripwise_user` / `tripwise_password`, port 5432), `ai-service` (loopback port 8000) and `frontend` (port 3000, `BACKEND_URL` -> Spring on the host).
-- `src/main/resources/application.yml` - datasource, `ddl-auto: validate`, Flyway, `jwt.secret|expiration|refresh-expiration|refresh-reuse-grace`, `rate-limit.*` (incl. `rate-limit.web-hints`, env `RATE_LIMIT_WEB_HINTS_CAPACITY`, default 20/user/day), `ai-service.base-url|api-key` (all env-overridable).
+- `src/main/resources/application.yml` - datasource, `ddl-auto: validate`, Flyway, `jwt.secret|expiration|refresh-expiration|refresh-reuse-grace`, `rate-limit.*` (incl. `rate-limit.web-hints`, env `RATE_LIMIT_WEB_HINTS_CAPACITY`, default 20/user/day; `rate-limit.guest-generate`, env `RATE_LIMIT_GUEST_GENERATE_CAPACITY`, default 5/IP/day for public `/api/v1/guest/**` planning without an account), `ai-service.base-url|api-key` (all env-overridable).
 - `src/main/resources/db/migration/V*__*.sql` - schema source of truth (PostgreSQL). Tables: `users`, `trips` (`preferences` JSONB, `status` default `DRAFT`), `trip_itineraries` (1:1 with trip, `plan_data` JSONB, `version`), `chat_messages` (`sender_role` in `USER|ASSISTANT|SYSTEM`).
 - **Temporary H2 fallback** (until Docker PostgreSQL is available): profile `h2` (`application-h2.yml`, file DB `./data/`), migrations mirrored in `src/main/resources/db/h2/` (JSON instead of JSONB, `ON UPDATE CURRENT_TIMESTAMP` instead of triggers). Every new `db/migration/V{n}` needs an equivalent `db/h2/V{n}` with the same version and name.
 

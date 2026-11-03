@@ -11,6 +11,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { FieldError, Input, Label } from "@/components/ui/form-controls";
 import { ApiError, authApi, errorMessage } from "@/lib/api/client";
+import { afterSignInPath } from "@/lib/guest-plan";
 import { loginSchema, type LoginValues } from "@/lib/validation";
 
 export default function LoginPage() {
@@ -23,7 +24,7 @@ export default function LoginPage() {
     setError(null);
     try {
       await authApi.login(values);
-      router.push("/trips");
+      router.push(await afterSignInPath());
     } catch (e) {
       setError(e instanceof ApiError && e.status === 401 ? "Incorrect email or password." : errorMessage(e));
     }

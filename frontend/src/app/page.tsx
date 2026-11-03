@@ -19,17 +19,23 @@ export default function Home() {
           Tell us your budget, comfort level and how you like to travel. Our planning agents build a day-by-day
           itinerary with transparent cost estimates.
         </p>
-        <div className="flex justify-center gap-3">
+        <div className="flex flex-wrap justify-center gap-3">
           <Link
-            href="/register"
+            href="/plan"
             className="inline-flex h-11 items-center rounded-md bg-primary px-6 font-medium text-primary-foreground hover:bg-primary/90"
           >
-            Get started
+            Plan a trip
+          </Link>
+          <Link href="/register" className="inline-flex h-11 items-center rounded-md border border-border px-6 font-medium hover:bg-muted">
+            Sign up
           </Link>
           <Link href="/login" className="inline-flex h-11 items-center rounded-md border border-border px-6 font-medium hover:bg-muted">
             Sign in
           </Link>
         </div>
+        <p className="text-sm text-muted-foreground">
+          No account needed to plan. Sign up only if you want to keep your trip history.
+        </p>
       </section>
       <section className="grid gap-4 sm:grid-cols-3">
         {FEATURES.map(({ icon: Icon, title, text }) => (

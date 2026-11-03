@@ -57,6 +57,8 @@ public class SecurityConfig {
                         .requestMatchers("/v3/api-docs", "/v3/api-docs/**", "/swagger-ui.html", "/swagger-ui/**")
                         .permitAll()
                         .requestMatchers("/error").permitAll()
+                        // Planning without an account: stateless, nothing stored, rate limited per IP
+                        .requestMatchers(HttpMethod.POST, "/api/v1/guest/**").permitAll()
                         .requestMatchers("/api/v1/trips/**").authenticated()
                         .anyRequest().authenticated())
                 .exceptionHandling(ex -> ex
