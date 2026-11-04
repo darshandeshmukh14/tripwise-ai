@@ -4,7 +4,7 @@ import { MapPin } from "lucide-react";
 import { useId, useMemo, useState } from "react";
 
 import { Input } from "@/components/ui/form-controls";
-import { searchPlaces, type PlaceSuggestion } from "@/lib/places";
+import { popularPlaces, searchPlaces, type PlaceSuggestion } from "@/lib/places";
 import { cn } from "@/lib/utils";
 
 type Props = Omit<React.InputHTMLAttributes<HTMLInputElement>, "value" | "onChange" | "onSelect"> & {
@@ -27,7 +27,7 @@ export function PlaceAutocomplete({ value, onChange, onSelect, nearby, onBlur, o
     const q = (value ?? "").trim().toLowerCase();
     const near = (nearby ?? []).filter((p) => p.city.toLowerCase().startsWith(q));
     const seen = new Set(near.map((p) => p.city.toLowerCase()));
-    const rest = searchPlaces(value ?? "").filter((p) => !seen.has(p.city.toLowerCase()));
+    const rest = (q ? searchPlaces(value ?? "") : popularPlaces()).filter((p) => !seen.has(p.city.toLowerCase()));
     return [...near, ...rest].slice(0, MAX_SUGGESTIONS);
   }, [value, nearby]);
   const show = open && suggestions.length > 0;

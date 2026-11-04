@@ -20,6 +20,6 @@ describe("searchPlaces", () => {
 
   it("matches country aliases, codes and accents", () => {
     expect(searchPlaces("uae")[0].city).toBe("Dubai");
-    expect(searchPlaces("cancun")[0].city).toBe("Canc?n");
+    expect(searchPlaces("cancun")[0].city).toBe("Cancún");
   });
 });

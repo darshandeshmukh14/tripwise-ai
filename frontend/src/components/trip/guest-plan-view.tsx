@@ -80,7 +80,7 @@ export function GuestPlanView() {
     },
   });
 
-  if (!ready) return <p className="text-muted-foreground">Loading?</p>;
+  if (!ready) return <p className="text-muted-foreground">Loading…</p>;
 
   const busy = clarify.isPending || generate.isPending;
   const trip = plan?.trip;
@@ -91,7 +91,7 @@ export function GuestPlanView() {
         <CardHeader>
           <CardTitle>Plan a trip</CardTitle>
           <CardDescription>
-            No account needed. Your plan isn&apos;t saved ? sign up any time to keep it in your trip history.
+            No account needed. Your plan isn&apos;t saved — sign up any time to keep it in your trip history.
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
@@ -101,7 +101,7 @@ export function GuestPlanView() {
           {generate.isPending ? (
             <p className="flex items-center gap-3" role="status">
               <Loader2 className="h-5 w-5 animate-spin text-primary" aria-hidden />
-              Our agents are comparing transport, pricing stays and drafting your days?
+              Our agents are comparing transport, pricing stays and drafting your days…
             </p>
           ) : questions && form ? (
             <div className="rounded-lg border border-border p-4">
@@ -116,7 +116,7 @@ export function GuestPlanView() {
             <TripForm
               initialValues={form ?? emptyTripForm}
               submitLabel="Plan my trip"
-              pendingLabel="Checking your trip?"
+              pendingLabel="Checking your trip…"
               onSubmit={(values) => {
                 setForm(values);
                 clarify.mutate(values);
@@ -138,12 +138,12 @@ export function GuestPlanView() {
         <div>
           <h1 className="text-2xl font-bold">{trip.destination}</h1>
           <p className="text-sm text-muted-foreground">
-            {trip.origin ? `From ${trip.origin} ? ` : ""}
-            {formatDate(trip.startDate)} ? {formatDate(trip.endDate)} ? {trip.travellersCount} traveller
+            {trip.origin ? `From ${trip.origin} · ` : ""}
+            {formatDate(trip.startDate)} – {formatDate(trip.endDate)} · {trip.travellersCount} traveller
             {trip.travellersCount === 1 ? "" : "s"}
           </p>
           {sortedStops.length > 0 && (
-            <p className="text-sm">{sortedStops.map((s) => `${s.city} (${s.nights}n)`).join(" ? ")}</p>
+            <p className="text-sm">{sortedStops.map((s) => `${s.city} (${s.nights}n)`).join(" → ")}</p>
           )}
         </div>
         <div className="flex gap-2">
@@ -170,7 +170,7 @@ export function GuestPlanView() {
           <p>This plan isn&apos;t saved and disappears when you close this tab.</p>
           <div className="flex gap-2">
             <Button size="sm" onClick={() => save.mutate()} disabled={save.isPending}>
-              <Save className="h-4 w-4" aria-hidden /> {save.isPending ? "Saving?" : "Save to my trips"}
+              <Save className="h-4 w-4" aria-hidden /> {save.isPending ? "Saving…" : "Save to my trips"}
             </Button>
             <Button
               size="sm"
@@ -236,7 +236,7 @@ function GuestChat({ plan, onChange }: { plan: GuestPlan; onChange: (next: Guest
     <Card className="flex flex-col">
       <CardHeader>
         <CardTitle>Refine with chat</CardTitle>
-        <CardDescription>Ask for changes ? costs are re-estimated automatically.</CardDescription>
+        <CardDescription>Ask for changes — costs are re-estimated automatically.</CardDescription>
       </CardHeader>
       <CardContent className="flex flex-1 flex-col gap-3">
         <div className="max-h-96 min-h-24 space-y-2 overflow-y-auto" aria-live="polite">
@@ -252,7 +252,7 @@ function GuestChat({ plan, onChange }: { plan: GuestPlan; onChange: (next: Guest
               {m.content}
             </div>
           ))}
-          {send.isPending && <p className="text-sm text-muted-foreground">Thinking?</p>}
+          {send.isPending && <p className="text-sm text-muted-foreground">Thinking…</p>}
         </div>
         {send.error && <Alert variant="destructive">{errorMessage(send.error)}</Alert>}
         <div className="flex flex-wrap gap-2">

@@ -3,12 +3,13 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Plus, Trash2 } from "lucide-react";
 import { useEffect, useState, useSyncExternalStore } from "react";
-import { useFieldArray, useForm, useWatch } from "react-hook-form";
+import { Controller, useFieldArray, useForm, useWatch } from "react-hook-form";
 
+import { PlaceAutocomplete } from "@/components/trip/place-autocomplete";
 import { Alert } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { FieldError, Input, Label, Select } from "@/components/ui/form-controls";
-import { ApiError, errorMessage } from "@/lib/api/client";
+import { ApiError, errorMessage, guestApi } from "@/lib/api/client";
 import {
   COMFORT_OPTIONS,
   CURRENCY_OPTIONS,
@@ -18,8 +19,9 @@ import {
   TRANSPORT_OPTIONS,
   tripDays,
 } from "@/lib/format";
+import { countryName, type PlaceSuggestion } from "@/lib/places";
 import { cn } from "@/lib/utils";
-import { emptyTripForm, MAX_STOPS, tripSchema, type TripFormValues } from "@/lib/validation";
+import { emptyTripForm, MAX_STOPS, toTripRequest, tripSchema, type TripFormValues } from "@/lib/validation";
 
 const STEPS = ["Where & when", "Budget & style", "Review"] as const;
 const STEP_FIELDS: (keyof TripFormValues)[][] = [
@@ -45,6 +47,55 @@ const chip = (selected: boolean) =>
 // "Today" depends on the visitor's clock: read it on the client only (empty during prerender).
 const noSubscribe = () => () => {};
 const useToday = () => useSyncExternalStore(noSubscribe, todayIso, () => "");
+
+/**
+ * Most popular places within a day's drive of the last chosen stop (public, nothing stored), debounced.
+ * Planned and origin cities are excluded.
+ */
+function useNearbyPlaces(values: TripFormValues, enabled: boolean): PlaceSuggestion[] {
+  const filled = values.stops.map((s) => s.city.trim()).filter(Boolean);
+  const anchor = filled.at(-1) ?? values.destination.trim();
+  const datesOk = !!values.startDate && !!values.endDate && values.endDate >= values.startDate;
+  const key = enabled && anchor && datesOk ? [anchor, values.origin, values.startDate, values.endDate].join("|") : "";
+  const [result, setResult] = useState<{ key: string; places: PlaceSuggestion[] }>({ key: "", places: [] });
+
+  useEffect(() => {
+    if (!key) return;
+    let cancelled = false;
+    const timer = setTimeout(() => {
+      const trip = {
+        ...toTripRequest({ ...values, destination: anchor, stops: [] }),
+        budgetAmount: undefined,
+        travellersCount: Number(values.travellersCount) || 1,
+      };
+      guestApi
+        .suggestStops(trip, {})
+        .then((r) => {
+          if (cancelled) return;
+          setResult({
+            key,
+            places: r.suggestions.map((s) => ({
+              city: s.city,
+              countryCode: s.countryCode,
+              country: countryName(s.countryCode),
+              hint: `${s.distanceKm} km from ${s.nearStop}`,
+            })),
+          });
+        })
+        .catch(() => {});
+    }, 600);
+    return () => {
+      cancelled = true;
+      clearTimeout(timer);
+    };
+    // Only refetch when the anchor city or dates change, not on every keystroke elsewhere.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [key]);
+
+  if (result.key !== key) return [];
+  const taken = new Set([...filled, values.origin.trim()].map((c) => c.toLowerCase()));
+  return result.places.filter((p) => !taken.has(p.city.toLowerCase()));
+}
 
 /** Three-step trip wizard shared by the create and edit pages. */
 export function TripForm({
@@ -82,6 +133,18 @@ export function TripForm({
     values.startDate && values.endDate && values.endDate >= values.startDate ? tripDays(values.startDate, values.endDate) - 1 : 0;
   const plannedNights = values.stops.reduce((sum, s) => sum + (Number(s.nights) || 0), 0);
   const stopsError = errors.stops?.message ?? errors.stops?.root?.message;
+  const nearby = useNearbyPlaces(values, step === 0 && stops.fields.length > 0);
+
+  function addNearby(place: PlaceSuggestion) {
+    const empty = values.stops.findIndex((s) => !s.city.trim());
+    const stop = { city: place.city, countryCode: place.countryCode, nights: "1" };
+    if (empty >= 0) {
+      form.setValue(`stops.${empty}.city`, place.city, { shouldValidate: true });
+      form.setValue(`stops.${empty}.countryCode`, place.countryCode, { shouldValidate: true });
+    } else if (stops.fields.length < MAX_STOPS) {
+      stops.append(stop);
+    }
+  }
 
   function enableMultiCity() {
     const destination = values.destination.trim();
@@ -119,10 +182,22 @@ export function TripForm({
           <>
             <div className="grid gap-4 sm:grid-cols-2">
               <Field label="From" id="origin" error={errors.origin?.message}>
-                <Input id="origin" placeholder="e.g. Pune" aria-invalid={!!errors.origin} {...form.register("origin")} />
+                <Controller
+                  control={form.control}
+                  name="origin"
+                  render={({ field }) => (
+                    <PlaceAutocomplete id="origin" placeholder="City or country, e.g. Pune" aria-invalid={!!errors.origin} {...field} />
+                  )}
+                />
               </Field>
               <Field label="To" id="destination" error={errors.destination?.message}>
-                <Input id="destination" placeholder="e.g. Goa" aria-invalid={!!errors.destination} {...form.register("destination")} />
+                <Controller
+                  control={form.control}
+                  name="destination"
+                  render={({ field }) => (
+                    <PlaceAutocomplete id="destination" placeholder="City or country, e.g. Goa" aria-invalid={!!errors.destination} {...field} />
+                  )}
+                />
               </Field>
             </div>
             <div className="grid gap-4 sm:grid-cols-3">
@@ -171,11 +246,19 @@ export function TripForm({
                             <Label htmlFor={`stops.${i}.city`} className="sr-only">
                               Stop {i + 1} city
                             </Label>
-                            <Input
-                              id={`stops.${i}.city`}
-                              placeholder={`Stop ${i + 1} city`}
-                              aria-invalid={!!e?.city}
-                              {...form.register(`stops.${i}.city`)}
+                            <Controller
+                              control={form.control}
+                              name={`stops.${i}.city`}
+                              render={({ field }) => (
+                                <PlaceAutocomplete
+                                  id={`stops.${i}.city`}
+                                  placeholder={`Stop ${i + 1} city`}
+                                  aria-invalid={!!e?.city}
+                                  {...field}
+                                  nearby={nearby}
+                                  onSelect={(p) => form.setValue(`stops.${i}.countryCode`, p.countryCode, { shouldValidate: true })}
+                                />
+                              )}
                             />
                             <FieldError message={e?.city?.message} />
                           </div>
@@ -213,6 +296,25 @@ export function TripForm({
                       );
                     })}
                   </ol>
+                  {nearby.length > 0 && (
+                    <div className="space-y-1" data-testid="nearby-places">
+                      <p className="text-xs text-muted-foreground">Popular places nearby</p>
+                      <div className="flex flex-wrap gap-2">
+                        {nearby.slice(0, 6).map((p) => (
+                          <button
+                            key={p.city}
+                            type="button"
+                            className={chip(false)}
+                            title={p.hint}
+                            disabled={stops.fields.length >= MAX_STOPS && values.stops.every((s) => s.city.trim())}
+                            onClick={() => addNearby(p)}
+                          >
+                            + {p.city} <span className="text-xs text-muted-foreground">({p.hint})</span>
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  )}
                   <div className="flex flex-wrap items-center justify-between gap-2 text-sm">
                     <span className={cn(plannedNights === tripNights ? "text-muted-foreground" : "text-amber-700 dark:text-amber-300")}>
                       {plannedNights} of {tripNights} night{tripNights === 1 ? "" : "s"} planned

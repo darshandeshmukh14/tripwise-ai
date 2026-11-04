@@ -12,15 +12,23 @@ const NEARBY: PlaceSuggestion[] = [
   { city: "Dandeli", countryCode: "IN", country: "India", hint: "110 km from Goa" },
 ];
 
-function Harness({ onSelect }: { onSelect: (p: PlaceSuggestion) => void }) {
+function Harness({ onSelect, nearby }: { onSelect: (p: PlaceSuggestion) => void; nearby?: PlaceSuggestion[] }) {
   const [value, setValue] = useState("");
-  return <PlaceAutocomplete aria-label="Stop" value={value} onChange={setValue} onSelect={onSelect} nearby={NEARBY} />;
+  return <PlaceAutocomplete aria-label="Stop" value={value} onChange={setValue} onSelect={onSelect} nearby={nearby} />;
 }
 
 describe("PlaceAutocomplete nearby", () => {
+  it("shows popular place choices when an empty field is focused", async () => {
+    render(<Harness onSelect={vi.fn()} />);
+    await userEvent.click(screen.getByRole("combobox"));
+    const options = within(screen.getByRole("listbox")).getAllByRole("option");
+    expect(options[0]).toHaveTextContent("Goa");
+    expect(options[1]).toHaveTextContent("Mumbai");
+  });
+
   it("lists nearby places when empty and selects one", async () => {
     const onSelect = vi.fn();
-    render(<Harness onSelect={onSelect} />);
+    render(<Harness onSelect={onSelect} nearby={NEARBY} />);
     await userEvent.click(screen.getByRole("combobox"));
     const options = within(screen.getByRole("listbox")).getAllByRole("option");
     expect(options[0]).toHaveTextContent("Gokarna");
@@ -31,7 +39,7 @@ describe("PlaceAutocomplete nearby", () => {
   });
 
   it("ranks matching nearby places before catalogue matches while typing", async () => {
-    render(<Harness onSelect={vi.fn()} />);
+    render(<Harness onSelect={vi.fn()} nearby={NEARBY} />);
     await userEvent.type(screen.getByRole("combobox"), "Go");
     const options = within(screen.getByRole("listbox")).getAllByRole("option");
     expect(options[0]).toHaveTextContent("Gokarna");
