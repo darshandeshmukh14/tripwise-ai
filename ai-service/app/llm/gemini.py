@@ -54,8 +54,9 @@ class GeminiLlmProvider:
             )
         except TimeoutError as exc:
             raise LlmError("LLM call timed out") from exc
-        except Exception as exc:  # SDK raises several error types; never leak details upstream
-            log.warning("Gemini call failed: %s", type(exc).__name__)
+        except Exception as exc:
+            detail = str(exc)[:500]
+            log.warning("Gemini call failed (%s): %s", type(exc).__name__, detail)
             raise LlmError("LLM call failed") from exc
 
         parsed = response.parsed
@@ -100,7 +101,7 @@ class GeminiLlmProvider:
         except TimeoutError as exc:
             raise LlmError("Price hint timed out") from exc
         except Exception as exc:
-            log.warning("Gemini grounding call failed: %s", type(exc).__name__)
+            log.warning("Gemini grounding call failed (%s): %s", type(exc).__name__, str(exc)[:500])
             raise LlmError("Price hint failed") from exc
         return parse_price_hint(response)
 

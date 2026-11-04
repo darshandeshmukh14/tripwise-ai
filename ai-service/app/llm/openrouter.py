@@ -63,7 +63,8 @@ class OpenRouterLlmProvider:
             log.warning("OpenRouter call failed: %s", type(exc).__name__)
             raise LlmError("LLM call failed") from exc
         if response.status_code != 200:
-            log.warning("OpenRouter call failed: HTTP %s", response.status_code)
+            body = response.text[:500]
+            log.warning("OpenRouter call failed (HTTP %s): %s", response.status_code, body)
             raise LlmError("LLM call failed")
         try:
             content = response.json()["choices"][0]["message"]["content"]
